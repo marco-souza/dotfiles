@@ -1,0 +1,36 @@
+#! /bin/bash
+
+# check dependencies
+# =====================
+if ! [ -x "$(command -v stow)" ]; then
+  echo "please install stow"
+  exit 1
+fi
+
+if ! [ -x "$(command -v git)" ]; then
+  echo "please install git" 
+  exit 1
+fi
+
+# download dotfiles
+# =====================
+dotfiles="$HOME/.dotfiles"
+[ ! -d $dotfiles ] && \
+  git clone git@github.com:marco-souza/dotfiles.git $dotfiles
+cd $dotfiles
+
+# Stow folders
+# =================
+  folders=(
+    git
+    tmux
+    nvim
+    alacritty
+  )
+
+  # apply files
+  for folder in ${folders[@]}; do
+    echo applying $folder
+    stow -t $HOME $folder || exit 1
+  done
+  cd -

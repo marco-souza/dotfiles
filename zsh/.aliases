@@ -1,0 +1,78 @@
+# CD Aliases
+############
+    alias ..="cd .."
+    alias ...="cd ../.."
+
+
+# Deno aliases
+#############
+    alias dn="deno"
+    alias dt="deno task"
+    alias dnr="deno run"
+    alias dni="deno install"
+
+
+# NPM Aliases
+#############
+    alias ni="npm i -g"
+    alias nr="npm r -g"
+    alias nu="npm up -g"
+
+
+# Yarn Aliases
+##############
+    alias js="yarn"
+    alias js0="yarn init"
+    alias jsi="yarn add"
+    alias jsid="yarn add -D"
+    alias jsr="yarn remove"
+    alias jsu="yarn update"
+
+
+# Make Aliases
+##############
+    alias mk="make"
+
+
+# Distrobox Aliases
+################
+    alias dbx="distrobox"
+    alias dbe="distrobox enter"
+    alias dbc="distrobox create"
+    alias dbr="distrobox rm -f"
+
+
+# Docker Aliases
+################
+    alias dk="podman"
+    alias dc="docker-compose"
+    alias dm="docker-machine"
+    alias ds="docker stack"
+    alias dsd="docker stack deploy"
+    alias dsd="docker stack remove"
+    alias dkps="docker container ps"
+    alias ctop="podman rm ctop; podman run --rm -ti \
+        --name=ctop \
+        -v /var/run/podman/podman.sock:/var/run/docker.sock \
+        quay.io/vektorlab/ctop:latest"
+
+
+# K8s Aliases
+#############
+    alias k="kubectl"
+    alias kg="kubectl get"
+    alias ka="kubectl apply -f"
+    alias kd="kubectl delete -f"
+
+# Text Editors
+################
+    alias vim=nvim
+    alias ev="nvim"
+    alias hx="helix"
+    alias ec="code-insiders"
+
+
+# Tmux Editors
+################
+    alias ta="tmux attach-session -t"
+    alias tl="tmux list-session"
