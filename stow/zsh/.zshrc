@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # Use powerline
 USE_POWERLINE="true"
 
@@ -20,7 +22,3 @@ eval "$(mise activate)"
 
 source $HOME/.aliases
 source $HOME/.completions
-
-
-# bun completions
-[ -s "/home/marco/_bun" ] && source "/home/marco/_bun"
