@@ -10,6 +10,8 @@ ensure_installed mise
 ensure_installed nvim
 ensure_installed stow
 ensure_installed tmux
+ensure_installed ripgrep
+ensure_installed zsh
 
 echo "[stow] apply dotfiles to the system"
 
@@ -92,12 +94,11 @@ fi
 
 echo "[nvim] Setting up nvim..."
 
-vim_already_configured=$(nvim --headless +'echo has("vim_starting")' +qa)
-
-if [ "$vim_already_configured" = "1" ]; then
+if [ -d $HOME/.config/nvim/.git/  ]; then
   echo "[nvim]   nvim already configured"
   echo ""
   echo "     [press 'r' to reset, any key to skip]"
+  read next
 fi
 
 if [ "$next" = "r" ]; then
