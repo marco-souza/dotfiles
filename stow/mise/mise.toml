@@ -1,0 +1,21 @@
+[tasks]
+hello = "echo 'Hello from mise'"
+
+[env]
+# _.file = ".env"
+# _.path = ".node_modules/bin"
+# ENV = "production"
+
+[tools]
+go = "latest"
+bun = "latest"
+deno = "latest"
+node = "latest"
+python = "latest"
+erlang = "latest"
+elixir = "latest"
+gleam = "latest"
+rust = "latest"
+zig = "latest"
+usage = "latest"
+watchexec = "latest"
