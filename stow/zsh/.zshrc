@@ -22,3 +22,5 @@ eval "$(mise activate)"
 
 source $HOME/.aliases
 source $HOME/.completions
+
+source $HOME/.utils.sh
