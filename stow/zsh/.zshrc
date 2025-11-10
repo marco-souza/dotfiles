@@ -18,6 +18,17 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
+plugins=(
+  go
+  git
+  npm
+  mise
+  tmux
+
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
 eval "$(mise activate)"
 
 source $HOME/.aliases
