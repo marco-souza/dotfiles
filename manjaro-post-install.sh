@@ -35,7 +35,7 @@ ensure_installed op 1password-cli
 
 
 echo ""
-echo "[op] Ok, now open 1password, sign in, and setup ssh + git"
+echo "[op] now open 1password, sign in, and setup ssh integration"
 echo ""
 echo "     [press any key to continue]"
 
@@ -56,7 +56,11 @@ if [ -f $HOME/.wakatime.cfg ]; then
   mv $HOME/.wakatime.cfg $HOME/.wakatime.cfg.bkp
 fi
 
-echo $wakatime_api_secret > $HOME/.wakatime.cfg
+echo "
+[settings]
+debug = false
+api_key = $wakatime_api_secret
+" > $HOME/.wakatime.cfg
 
 echo "[op] setup git config"
 
@@ -65,15 +69,16 @@ git_name_set=$(git config --global user.name || echo "")
 git_email_set=$(git config --global user.email || echo "")
 
 if [ -n "$git_name_set" ] && [ -n "$git_email_set" ]; then
-  echo "[op]   Git global config already set. Skipping..."
+  echo "[op]   Git global config already set"
   echo ""
   echo "     Name:  $git_name_set"
   echo "     Email: $git_email_set"
   echo ""
-  echo "     [press any key to continue]"
+  echo "     [press 'e' to edit, any key to skip]"
   read next
-  exit 0
-else
+fi
+
+if [ "$next" = "e" ] || [ -z "$git_name_set" ] || [ -z "$git_email_set" ]; then
   echo "[op]   What is your name?"
   read name
 
@@ -87,8 +92,21 @@ fi
 
 echo "[nvim] Setting up nvim..."
 
-mv $HOME/.config/nvim $HOME/.config/nvim.bkp
+vim_already_configured=$(nvim --headless +'echo has("vim_starting")' +qa)
 
-git clone git@github.com:marco-souza/scratch.nvim.git $HOME/.config/nvim
+if [ "$vim_already_configured" = "1" ]; then
+  echo "[nvim]   nvim already configured"
+  echo ""
+  echo "     [press 'r' to reset, any key to skip]"
+fi
 
-nvim --headless +"Lazy! sync" +qa
+if [ "$next" = "r" ]; then
+  echo "[nvim]   Backing up existing nvim config to $HOME/.config/nvim.bkp"
+  mv $HOME/.config/nvim $HOME/.config/nvim.bkp
+
+  echo "[nvim]   Cloning scratch.nvim config"
+  git clone git@github.com:marco-souza/scratch.nvim.git $HOME/.config/nvim
+
+  echo "[nvim]   Installing plugins"
+  nvim --headless +"Lazy! sync" +qa
+fi
