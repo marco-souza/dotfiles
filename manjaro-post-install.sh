@@ -90,6 +90,8 @@ if [ "$next" = "e" ] || [ -z "$git_name_set" ] || [ -z "$git_email_set" ]; then
 
   git config --global user.email $email
   git config --global user.name $name
+
+  git config --global init.defaultBranch main
 fi
 
 
