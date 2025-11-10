@@ -10,8 +10,8 @@ ensure_installed mise
 ensure_installed nvim
 ensure_installed stow
 ensure_installed tmux
-ensure_installed ripgrep
 ensure_installed zsh
+ensure_installed rg ripgrep
 
 echo "[stow] apply dotfiles to the system"
 
