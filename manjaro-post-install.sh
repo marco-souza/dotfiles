@@ -38,6 +38,14 @@ ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-in
 
 clear
 
+if [ ! -f /etc/1password/custom_allowed_browsers ]; then
+  echo "[op] configuring 1password to allow zen-twilight as browser"
+
+  sudo mkdir /etc/1password
+  sudo touch /etc/1password/custom_allowed_browsers
+  echo "zen-twilight" | sudo tee -a /etc/1password/custom_allowed_browsers
+fi
+
 echo ""
 echo "[op] now open 1password, sign in, and setup ssh integration"
 echo ""
