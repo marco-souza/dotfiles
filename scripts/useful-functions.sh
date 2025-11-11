@@ -33,6 +33,21 @@ function stow_config() {
   cd ..
 }
 
+function setup_wakatime_config() {
+  wakatime_api_secret=$(op item get $(op item list | grep wakatime | awk '{ print $1 }') --fields "label=API Secret" --reveal)
+
+  if [ -z "$wakatime_api_secret" ]; then
+    echo "[op]   Wakatime API Secret not found in 1password. Please create an item in 1password with the label 'Wakatime' and a field 'API Secret' containing your Wakatime API key."
+    exit 1
+  fi
+
+echo "
+[settings]
+debug = false
+api_key = $wakatime_api_secret
+" > $HOME/.wakatime.cfg
+}
+
 # update packages
 
 if [[ -x $(command -v yay) ]]; then

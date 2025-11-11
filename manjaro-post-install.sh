@@ -45,25 +45,24 @@ echo "     [press any key to continue]"
 read next
 
 
-echo "[op] setup Wakatime credentials"
-
-wakatime_api_secret=$(op item get $(op item list | grep wakatime | awk '{ print $1 }') --fields "label=API Secret" --reveal)
-
-if [ -z "$wakatime_api_secret" ]; then
-  echo "[op]   Wakatime API Secret not found in 1password. Please create an item in 1password with the label 'Wakatime' and a field 'API Secret' containing your Wakatime API key."
-  exit 1
-fi
+echo "[op] setup wakatime credentials"
 
 if [ -f $HOME/.wakatime.cfg ]; then
-  echo "[op]   Wakatime config file already exists. Backing up to $HOME/.wakatime.cfg.bkp"
-  mv $HOME/.wakatime.cfg $HOME/.wakatime.cfg.bkp
+  echo "[op]   Wakatime config file already exists"
+  echo ""
+  echo "     [press 'r' to reset, any key to continue]"
+  read next
+
+  if [ "$next" = "r" ]; then
+    echo "[op]   Backing up existing Wakatime config to $HOME/.wakatime.cfg.bkp"
+    mv $HOME/.wakatime.cfg $HOME/.wakatime.cfg.bkp
+
+    setup_wakatime_config
+  fi
+else
+  setup_wakatime_config
 fi
 
-echo "
-[settings]
-debug = false
-api_key = $wakatime_api_secret
-" > $HOME/.wakatime.cfg
 
 echo "[op] setup git config"
 
