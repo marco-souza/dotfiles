@@ -36,6 +36,7 @@ ensure_installed 1password 1password-beta
 ensure_installed op 1password-cli
 ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-intel"
 
+clear
 
 echo ""
 echo "[op] now open 1password, sign in, and setup ssh integration"
@@ -44,6 +45,7 @@ echo "     [press any key to continue]"
 
 read next
 
+clear
 
 echo "[op] setup wakatime credentials"
 
@@ -63,6 +65,7 @@ else
   setup_wakatime_config
 fi
 
+clear
 
 echo "[op] setup git config"
 
@@ -93,6 +96,7 @@ if [ "$next" = "e" ] || [ -z "$git_name_set" ] || [ -z "$git_email_set" ]; then
   git config --global init.defaultBranch main
 fi
 
+clear
 
 echo "[nvim] Setting up nvim..."
 
