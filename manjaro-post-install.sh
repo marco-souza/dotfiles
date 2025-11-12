@@ -45,6 +45,7 @@ ensure_installed zen-twilight zen-twilight-bin
 ensure_installed 1password 1password-beta
 ensure_installed op 1password-cli
 ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-intel"
+ensure_installed lutris "lutris-git lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"
 
 clear
 
