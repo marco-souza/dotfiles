@@ -113,15 +113,13 @@ if [ -d $HOME/.config/nvim/.git/  ]; then
   echo ""
   echo "     [press 'r' to reset, any key to skip]"
   read next
-fi
 
-if [ "$next" = "r" ]; then
-  echo "[nvim]   Backing up existing nvim config to $HOME/.config/nvim.bkp"
-  mv $HOME/.config/nvim $HOME/.config/nvim.bkp
+  if [ "$next" = "r" ]; then
+    echo "[nvim]   Backing up existing nvim config to $HOME/.config/nvim.bkp"
+    mv $HOME/.config/nvim $HOME/.config/nvim.bkp
 
-  echo "[nvim]   Cloning scratch.nvim config"
-  git clone git@github.com:marco-souza/scratch.nvim.git $HOME/.config/nvim
-
-  echo "[nvim]   Installing plugins"
-  nvim --headless +"Lazy! sync" +qa
+    setup_nvim
+  fi
+else
+  setup_nvim
 fi

@@ -48,6 +48,14 @@ api_key = $wakatime_api_secret
 " > $HOME/.wakatime.cfg
 }
 
+function setup_nvim() {
+  echo "[nvim]   Cloning scratch.nvim config"
+  git clone git@github.com:marco-souza/scratch.nvim.git $HOME/.config/nvim
+
+  echo "[nvim]   Installing plugins"
+  nvim --headless +"Lazy! sync" +qa
+}
+
 # update packages
 
 if [[ -x $(command -v yay) ]]; then
