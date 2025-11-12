@@ -21,7 +21,16 @@ stow_config zsh --adopt
 stow_config tmux
 stow_config ghostty
 
-git reset --hard
+echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
+read reset_stow
+
+if [ "$reset_stow" = "y" ] || [ "$reset_stow" = "Y" ]; then
+  echo "[stow] resetting stow configs"
+
+  git reset --hard
+fi
+
+clear
 
 echo "[mise] Installing dependencies"
 
