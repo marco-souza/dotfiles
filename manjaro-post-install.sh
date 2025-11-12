@@ -13,6 +13,7 @@ ensure_installed tmux
 ensure_installed zsh
 ensure_installed rg ripgrep
 ensure_installed gh github-cli
+ensure_installed evdi "linux612-headers evdi-git displaylink"
 
 echo "[stow] apply dotfiles to the system"
 
