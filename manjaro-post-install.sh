@@ -130,3 +130,9 @@ clear
 echo "[npm] Installing global npm packages"
 
 setup_npm_globals
+
+echo ""
+echo "[complete] Manjaro post install script finished! 🎉"
+echo ""
+echo "     It's recommended to restart your computer now."
+echo ""
