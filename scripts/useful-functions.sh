@@ -72,6 +72,7 @@ function setup_npm_globals() {
   npm_ensure_installed biome @biomejs/biome
 
   # LSP
+  npm_ensure_installed emmet-language-server emmet-language-server
   npm_ensure_installed typescript-language-server typescript-language-server
   npm_ensure_installed tailwindcss-language-server @tailwindcss/language-server
 
