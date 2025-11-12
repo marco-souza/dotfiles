@@ -1,5 +1,9 @@
 #! /bin/bash
 
+# Setup environment variables
+export EDITOR="nvim"
+export BROWSER="zen-twilight"
+
 # Use powerline
 USE_POWERLINE="true"
 
