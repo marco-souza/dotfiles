@@ -12,6 +12,7 @@ ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
 ensure_installed rg ripgrep
+ensure_installed gh github-cli
 
 echo "[stow] apply dotfiles to the system"
 
@@ -123,3 +124,9 @@ if [ -d $HOME/.config/nvim/.git/  ]; then
 else
   setup_nvim
 fi
+
+clear
+
+echo "[npm] Installing global npm packages"
+
+setup_npm_globals

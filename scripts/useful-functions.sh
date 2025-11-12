@@ -24,6 +24,15 @@ function mise_ensure_installed() {
   fi
 }
 
+function npm_ensure_installed() {
+  cmd=$1
+  install_cmd=${2:-$1}
+
+  if [[ ! -x $(command -v $cmd) ]]; then
+    npm install -g $install_cmd
+  fi
+}
+
 function stow_config() {
   package=$1
   flags=$2
@@ -54,6 +63,22 @@ function setup_nvim() {
 
   echo "[nvim]   Installing plugins"
   nvim --headless +"Lazy! sync" +qa
+}
+
+function setup_npm_globals() {
+  npm_ensure_installed tsc typescript
+  npm_ensure_installed eslint eslint
+  npm_ensure_installed prettier prettier
+  npm_ensure_installed biome @biomejs/biome
+
+  # LSP
+  npm_ensure_installed typescript-language-server typescript-language-server
+  npm_ensure_installed tailwindcss-language-server @tailwindcss/language-server
+
+  # AI
+  npm_ensure_installed amp @sourcegraph/amp@latest
+  npm_ensure_installed gemini @google/gemini-cli
+  npm_ensure_installed copilot @github/copilot
 }
 
 # update packages
