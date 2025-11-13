@@ -13,7 +13,6 @@ ensure_installed tmux
 ensure_installed zsh
 ensure_installed rg ripgrep
 ensure_installed gh github-cli
-ensure_installed evdi "linux612-headers evdi-git displaylink"
 
 echo "[stow] apply dotfiles to the system"
 
@@ -140,7 +139,12 @@ clear
 
 echo "[npm] Installing global npm packages"
 
-setup_npm_globals
+setup_npm_globals && clear
+
+echo "[evdi] Setup evdi module for displaylink"
+
+setup_evdi && clear
+
 
 echo ""
 echo "[complete] Manjaro post install script finished! 🎉"

@@ -82,6 +82,32 @@ function setup_npm_globals() {
   npm_ensure_installed copilot @github/copilot
 }
 
+function setup_evdi() {
+  # installing DisplayLink
+  # run uname to discover version
+  pamac install displaylink "linux612-headers evdi-dkms displaylink"
+
+  export EVDI_VERSION=${1:-1.14.11}
+
+  # re-build displaylink to support linux 6+
+  cd /tmp/
+  rm ./evdi -rf
+
+  git clone https://github.com/DisplayLink/evdi /tmp/evdi
+  sudo cp -r /tmp/evdi/module/* /usr/src/evdi-$EVDI_VERSION/
+
+  # build and install dkms evdi driver for displaylink (Linux 6+)
+  sudo dkms build -m evdi -v $EVDI_VERSION --force
+  sudo dkms install -m evdi -v $EVDI_VERSION --force
+
+  sudo systemctl enable displaylink
+  sudo systemctl start displaylink
+
+  echo 'All good! Please restart you system to ensure it works fine.'
+
+  cd -
+}
+
 # update packages
 
 if [[ -x $(command -v yay) ]]; then
