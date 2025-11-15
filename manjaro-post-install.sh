@@ -13,6 +13,7 @@ ensure_installed tmux
 ensure_installed zsh
 ensure_installed rg ripgrep
 ensure_installed gh github-cli
+ensure_installed inotifywait inotify-tools
 
 echo "[stow] apply dotfiles to the system"
 
