@@ -11,6 +11,7 @@ ensure_installed nvim
 ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
+ensure_installed yt-dlp
 ensure_installed rg ripgrep
 ensure_installed gh github-cli
 ensure_installed inotifywait inotify-tools
