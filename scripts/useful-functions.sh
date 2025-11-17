@@ -190,3 +190,32 @@ elif [[ "$os" == "macos" ]]; then
   brew update
   brew upgrade
 fi
+
+function setup_zsh() {
+  # Set zsh as default shell
+  if [ "$SHELL" != "/bin/zsh" ]; then
+    echo "[zsh] Setting zsh as default shell"
+    chsh -s /bin/zsh
+  fi
+}
+
+function setup_omz() {
+  omz_install() {
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  }
+
+  OMZ_HOME=$HOME/.oh-my-zsh
+  if [ ! -d $OMZ_HOME ]; then
+    echo "[omz] Installing Oh My Zsh"
+    omz_install
+  else
+    echo "[omz] Oh My Zsh already installed, wanna reset it? [y/N]"
+    read reset_omz
+
+    if [ "$reset_omz" = "y" ] || [ "$reset_omz" = "Y" ]; then
+      echo "[omz] resetting Oh My Zsh"
+      rm -rf $OMZ_HOME
+      omz_install
+    fi
+  fi
+}

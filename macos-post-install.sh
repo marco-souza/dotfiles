@@ -39,6 +39,12 @@ fi
 
 clear
 
+echo "[zsh] zsh setup"
+setup_zsh
+
+echo "[omz] Oh My Zsh setup"
+setup_omz
+
 echo "[mise] Installing dependencies"
 mise install
 
