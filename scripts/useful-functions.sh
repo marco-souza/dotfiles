@@ -1,3 +1,13 @@
+function detect_os() {
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo "linux"
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "macos"
+  else
+    echo "unknown"
+  fi
+}
+
 function ensure_installed() {
   cmd=$1
   install_cmd=${2:-$1}
@@ -7,11 +17,16 @@ function ensure_installed() {
     return
   fi
 
+  os=$(detect_os)
 
-  if [[ -x $(command -v yay) ]]; then
-    yay -Syu $install_cmd --noconfirm
-  else
-    sudo pamac install $install_cmd --no-confirm
+  if [[ "$os" == "linux" ]]; then
+    if [[ -x $(command -v yay) ]]; then
+      yay -Syu $install_cmd --noconfirm
+    else
+      sudo pamac install $install_cmd --no-confirm
+    fi
+  elif [[ "$os" == "macos" ]]; then
+    brew install $install_cmd
   fi
 }
 
@@ -59,7 +74,7 @@ api_key = $wakatime_api_secret
 
 function setup_nvim() {
   echo "[nvim]   Cloning scratch.nvim config"
-  git clone git@github.com:marco-souza/scratch.nvim.git $HOME/.config/nvim
+  git clone git@github.com:marco-souza/nvim.git $HOME/.config/nvim
 
   echo "[nvim]   Installing plugins"
   nvim --headless +"Lazy! sync" +qa
@@ -80,6 +95,17 @@ function setup_npm_globals() {
   npm_ensure_installed amp @sourcegraph/amp@latest
   npm_ensure_installed gemini @google/gemini-cli
   npm_ensure_installed copilot @github/copilot
+}
+
+function ensure_cask_installed() {
+  cmd=$1
+  install_cmd=${2:-$1}
+
+  if [[ -x $(command -v $cmd) ]]; then
+    return
+  fi
+
+  brew install --cask $install_cmd
 }
 
 function setup_evdi() {
@@ -108,10 +134,59 @@ function setup_evdi() {
   cd -
 }
 
+function configure_macos_defaults() {
+  echo "[macos] Configuring system defaults..."
+
+  # Set hostname (requires interaction)
+  # sudo scutil --set ComputerName "Your Mac Name"
+
+  # Show hidden files
+  defaults write com.apple.finder AppleShowAllFiles -bool true
+
+  # Show path bar
+  defaults write com.apple.finder ShowPathbar -bool true
+
+  # Show status bar
+  defaults write com.apple.finder ShowStatusBar -bool true
+
+  # Use list view in Finder
+  defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+  # Disable press-and-hold for keys
+  defaults write -g ApplePressAndHoldEnabled -bool false
+
+  # Set fast key repeat
+  defaults write -g KeyRepeat -int 2
+  defaults write -g InitialKeyRepeat -int 15
+
+  # Hide dock automatically
+  defaults write com.apple.dock autohide -bool true
+
+  # Dock size
+  defaults write com.apple.dock tilesize -int 36
+
+  # Enable full keyboard access (Tab in dialogs)
+  defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+  # Set clock format
+  defaults write com.apple.menuextra.clock DateFormat -string "HH:mm"
+
+  killall Finder Dock SystemUIServer 2>/dev/null
+
+  echo "[macos] System defaults applied"
+}
+
 # update packages
 
-if [[ -x $(command -v yay) ]]; then
-  sudo yay -Syu --noconfirm
-else
-  sudo pamac update --no-confirm
+os=$(detect_os)
+
+if [[ "$os" == "linux" ]]; then
+  if [[ -x $(command -v yay) ]]; then
+    sudo yay -Syu --noconfirm
+  else
+    sudo pamac update --no-confirm
+  fi
+elif [[ "$os" == "macos" ]]; then
+  brew update
+  brew upgrade
 fi

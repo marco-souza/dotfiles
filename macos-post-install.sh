@@ -1,21 +1,25 @@
-#! /bin/bash
+#!/bin/bash
 
 # load other files
 source ./scripts/useful-functions.sh
 
+echo "[os] Installing Homebrew"
+if ! command -v brew &> /dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 echo "[os] Installing System dependencies"
 
-ensure_installed yay
 ensure_installed mise
 ensure_installed nvim
 ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
-ensure_installed mixxx
-ensure_installed yt-dlp
-ensure_installed rg ripgrep
+ensure_installed ripgrep rg
 ensure_installed gh github-cli
-ensure_installed inotifywait inotify-tools
+ensure_installed fzf fzf
+ensure_installed bat bat
+ensure_installed eza eza
 
 echo "[stow] apply dotfiles to the system"
 
@@ -23,69 +27,36 @@ stow_config mise
 stow_config zsh --adopt
 stow_config tmux
 stow_config ghostty
-stow_config amp
+stow_config amp --adopt
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
 read reset_stow
 
 if [ "$reset_stow" = "y" ] || [ "$reset_stow" = "Y" ]; then
   echo "[stow] resetting stow configs"
-
   git reset --hard
 fi
 
 clear
 
 echo "[mise] Installing dependencies"
-
 mise install
 
 echo "[os] Installing System Applications"
 
-ensure_installed ghostty
-ensure_installed localsend localsend-bin
-ensure_installed brave brave-bin
-ensure_installed zen-twilight zen-twilight-bin
-ensure_installed 1password 1password-beta
-ensure_installed op 1password-cli
-ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-intel"
-ensure_installed lutris "lutris-git lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"
+ensure_cask_installed ghostty ghostty
+ensure_cask_installed localsend localsend
+ensure_cask_installed brave brave-browser
+ensure_cask_installed 1password 1password
+ensure_cask_installed obsidian obsidian
 
 clear
 
-if [ ! -f /etc/1password/custom_allowed_browsers ]; then
-  echo "[op] configuring 1password to allow zen-twilight as browser"
+echo "[macos] Configuring system defaults [y/N]"
+read configure_defaults
 
-  sudo mkdir /etc/1password
-  sudo touch /etc/1password/custom_allowed_browsers
-  echo "zen-twilight" | sudo tee -a /etc/1password/custom_allowed_browsers
-fi
-
-echo ""
-echo "[op] now open 1password, sign in, and setup ssh integration"
-echo ""
-echo "     [press any key to continue]"
-
-read next
-
-clear
-
-echo "[op] setup wakatime credentials"
-
-if [ -f $HOME/.wakatime.cfg ]; then
-  echo "[op]   Wakatime config file already exists"
-  echo ""
-  echo "     [press 'r' to reset, any key to continue]"
-  read next
-
-  if [ "$next" = "r" ]; then
-    echo "[op]   Backing up existing Wakatime config to $HOME/.wakatime.cfg.bkp"
-    mv $HOME/.wakatime.cfg $HOME/.wakatime.cfg.bkp
-
-    setup_wakatime_config
-  fi
-else
-  setup_wakatime_config
+if [ "$configure_defaults" = "y" ] || [ "$configure_defaults" = "Y" ]; then
+  configure_macos_defaults
 fi
 
 clear
@@ -123,7 +94,7 @@ clear
 
 echo "[nvim] Setting up nvim..."
 
-if [ -d $HOME/.config/nvim/.git/  ]; then
+if [ -d $HOME/.config/nvim/.git/ ]; then
   echo "[nvim]   nvim already configured"
   echo ""
   echo "     [press 'r' to reset, any key to skip]"
@@ -145,13 +116,12 @@ echo "[npm] Installing global npm packages"
 
 setup_npm_globals && clear
 
-echo "[evdi] Setup evdi module for displaylink"
-
-setup_evdi && clear
-
-
 echo ""
-echo "[complete] Manjaro post install script finished! 🎉"
+echo "[complete] macOS post install script finished! 🎉"
 echo ""
-echo "     It's recommended to restart your computer now."
+echo "     Recommended next steps:"
+echo "     1. Open 1Password and set up SSH integration"
+echo "     2. Set up Wakatime credentials in nvim"
+echo "     3. Configure Raycast (⌘ + Space)"
+echo "     4. Sign in to Arc browser"
 echo ""
