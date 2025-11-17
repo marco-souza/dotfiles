@@ -1,0 +1,32 @@
+{
+  "amp.mcpServers": {
+    "playwright": {
+        "command": "npx",
+        "args": ["-y", "@playwright/mcp@latest", "--headless", "--isolated"]
+    },
+    "semgrep": {
+        "url": "https://mcp.semgrep.ai/mcp"
+    },
+    "sourcegraph": {
+        "url": "${SRC_ENDPOINT}/.api/mcp/v1",
+        "headers": {
+            "Authorization": "token ${SRC_ACCESS_TOKEN}"
+        }
+    },
+    "linear": {
+        "command": "npx",
+        "args": [
+            "mcp-remote",
+            "https://mcp.linear.app/sse"
+        ]
+    },
+    "monday": {
+        "url": "https://mcp.monday.com/sse",
+        "headers": {
+            "Authorization": "Bearer ${MONDAY_API_TOKEN}"
+        }
+    }
+}
+
+}
+
