@@ -23,3 +23,58 @@ workon() {
 mug() { gl && gco $1 && gl && gco - && gm -Xours $1 }
 
 rug() { gl && gco $1 && gl && gco - && grb $1 }
+
+function source_omz() {
+  # Path to your oh-my-zsh installation
+  export ZSH="$HOME/.oh-my-zsh"
+  if [ ! -e $ZSH ]; then
+    git clone https://github.com/ohmyzsh/ohmyzsh.git $ZSH
+  fi
+
+  # Theme configuration
+  export ZSH_THEME="robbyrussell"
+  export ZSH_CUSTOM=$ZSH/custom
+  export ZSH_PLUGINS_HOME=$ZSH/custom/plugins
+
+  # Oh-My-Zsh settings
+  export UPDATE_ZSH_DAYS=3
+  ENABLE_CORRECTION="true"
+  COMPLETION_WAITING_DOTS="true"
+  HIST_STAMPS="%d.%m.%y %T"
+
+  # Plugins setup
+  plugins=(
+    git
+    npm
+    mise
+    tmux
+
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+  )
+
+  # download autosuggestions
+  ZSH_AUTOSUGGESTIONS=$ZSH_PLUGINS_HOME/zsh-autosuggestions
+  if [ ! -e $ZSH_AUTOSUGGESTIONS ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_AUTOSUGGESTIONS
+  fi
+
+  ZSH_SYNTAX_HIGHLIGHTING=$ZSH_PLUGINS_HOME/zsh-syntax-highlighting
+  if [ ! -e $ZSH_SYNTAX_HIGHLIGHTING ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_SYNTAX_HIGHLIGHTING
+  fi
+
+  source $ZSH/oh-my-zsh.sh
+}
+
+function source_manjaro() {
+  # Source manjaro-zsh-configuration
+  if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+    source /usr/share/zsh/manjaro-zsh-config
+  fi
+
+  # Use manjaro zsh prompt
+  if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+    source /usr/share/zsh/manjaro-zsh-prompt
+  fi
+}
