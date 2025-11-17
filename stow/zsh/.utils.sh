@@ -32,7 +32,7 @@ function source_omz() {
   fi
 
   # Theme configuration
-  export ZSH_THEME="amuse"
+  export ZSH_THEME="bureau"
   export ZSH_CUSTOM=$ZSH/custom
   export ZSH_PLUGINS_HOME=$ZSH/custom/plugins
 
