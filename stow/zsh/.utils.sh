@@ -32,15 +32,24 @@ function source_omz() {
   fi
 
   # Theme configuration
-  export ZSH_THEME="robbyrussell"
+  export ZSH_THEME="amuse"
   export ZSH_CUSTOM=$ZSH/custom
   export ZSH_PLUGINS_HOME=$ZSH/custom/plugins
 
   # Oh-My-Zsh settings
   export UPDATE_ZSH_DAYS=3
-  ENABLE_CORRECTION="true"
-  COMPLETION_WAITING_DOTS="true"
-  HIST_STAMPS="%d.%m.%y %T"
+  export ENABLE_CORRECTION="true"
+  export COMPLETION_WAITING_DOTS="true"
+  export HIST_STAMPS="%d.%m.%y %T"
+
+  # Use powerline
+  export USE_POWERLINE="true"
+
+  # Has weird character width
+  # Example:
+  #    is not a diamond
+  export HAS_WIDECHARS="false"
+
 
   # Plugins setup
   plugins=(
@@ -64,10 +73,6 @@ function source_omz() {
     git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_SYNTAX_HIGHLIGHTING
   fi
 
-  source $ZSH/oh-my-zsh.sh
-}
-
-function source_manjaro() {
   # Source manjaro-zsh-configuration
   if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
     source /usr/share/zsh/manjaro-zsh-config
@@ -77,4 +82,6 @@ function source_manjaro() {
   if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
     source /usr/share/zsh/manjaro-zsh-prompt
   fi
+
+  source $ZSH/oh-my-zsh.sh
 }
