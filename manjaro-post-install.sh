@@ -20,7 +20,7 @@ ensure_installed inotifywait inotify-tools
 echo "[stow] apply dotfiles to the system"
 
 stow_config mise
-stow_config zsh --adopt
+stow_config zsh
 stow_config tmux
 stow_config ghostty
 stow_config amp

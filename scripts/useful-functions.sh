@@ -53,7 +53,7 @@ function stow_config() {
   flags=$2
 
   cd stow
-  stow $flags --target $HOME $package
+  stow $flags --target $HOME $package --adopt
   cd ..
 }
 

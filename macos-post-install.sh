@@ -24,10 +24,10 @@ ensure_installed eza eza
 echo "[stow] apply dotfiles to the system"
 
 stow_config mise
-stow_config zsh --adopt
+stow_config zsh
 stow_config tmux
 stow_config ghostty
-stow_config amp --adopt
+stow_config amp
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
 read reset_stow
@@ -60,6 +60,33 @@ if [ "$configure_defaults" = "y" ] || [ "$configure_defaults" = "Y" ]; then
 fi
 
 clear
+
+echo ""
+echo "[op] now open 1password, sign in, and setup ssh integration"
+echo ""
+echo "     [press any key to continue]"
+
+read next
+
+clear
+
+echo "[op] setup wakatime credentials"
+
+if [ -f $HOME/.wakatime.cfg ]; then
+  echo "[op]   Wakatime config file already exists"
+  echo ""
+  echo "     [press 'r' to reset, any key to continue]"
+  read next
+
+  if [ "$next" = "r" ]; then
+    echo "[op]   Backing up existing Wakatime config to $HOME/.wakatime.cfg.bkp"
+    mv $HOME/.wakatime.cfg $HOME/.wakatime.cfg.bkp
+
+    setup_wakatime_config
+  fi
+else
+  setup_wakatime_config
+fi
 
 echo "[op] setup git config"
 
@@ -118,10 +145,4 @@ setup_npm_globals && clear
 
 echo ""
 echo "[complete] macOS post install script finished! 🎉"
-echo ""
-echo "     Recommended next steps:"
-echo "     1. Open 1Password and set up SSH integration"
-echo "     2. Set up Wakatime credentials in nvim"
-echo "     3. Configure Raycast (⌘ + Space)"
-echo "     4. Sign in to Arc browser"
 echo ""
