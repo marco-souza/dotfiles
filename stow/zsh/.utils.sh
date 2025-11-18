@@ -73,15 +73,5 @@ function source_omz() {
     git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_SYNTAX_HIGHLIGHTING
   fi
 
-  # Source manjaro-zsh-configuration
-  if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-    source /usr/share/zsh/manjaro-zsh-config
-  fi
-
-  # Use manjaro zsh prompt
-  if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-    source /usr/share/zsh/manjaro-zsh-prompt
-  fi
-
   source $ZSH/oh-my-zsh.sh
 }
