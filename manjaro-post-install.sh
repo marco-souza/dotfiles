@@ -48,9 +48,9 @@ mise install
 echo "[os] Installing System Applications"
 
 ensure_installed ghostty
+ensure_installed zen-twilight
 ensure_installed localsend localsend-bin
 ensure_installed brave brave-bin
-ensure_installed zen-twilight zen-twilight-bin
 ensure_installed 1password 1password-beta
 ensure_installed op 1password-cli
 ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-intel"
