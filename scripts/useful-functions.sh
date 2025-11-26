@@ -200,22 +200,52 @@ function setup_zsh() {
 }
 
 function setup_omz() {
-  omz_install() {
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  }
+   omz_install() {
+     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+   }
 
-  OMZ_HOME=$HOME/.oh-my-zsh
-  if [ ! -d $OMZ_HOME ]; then
-    echo "[omz] Installing Oh My Zsh"
-    omz_install
-  else
-    echo "[omz] Oh My Zsh already installed, wanna reset it? [y/N]"
-    read reset_omz
+   OMZ_HOME=$HOME/.oh-my-zsh
+   if [ ! -d $OMZ_HOME ]; then
+     echo "[omz] Installing Oh My Zsh"
+     omz_install
+   else
+     echo "[omz] Oh My Zsh already installed, wanna reset it? [y/N]"
+     read reset_omz
 
-    if [ "$reset_omz" = "y" ] || [ "$reset_omz" = "Y" ]; then
-      echo "[omz] resetting Oh My Zsh"
-      rm -rf $OMZ_HOME
-      omz_install
-    fi
+     if [ "$reset_omz" = "y" ] || [ "$reset_omz" = "Y" ]; then
+       echo "[omz] resetting Oh My Zsh"
+       rm -rf $OMZ_HOME
+       omz_install
+     fi
+   fi
+}
+
+function setup_fingerprint() {
+  echo "[fingerprint] Checking for fingerprint reader..."
+  
+  # Check if fingerprint reader is available
+  if ! lsusb | grep -q "27c6"; then
+    echo "[fingerprint] No Goodix fingerprint reader detected"
+    return
   fi
+  
+  echo "[fingerprint] Goodix fingerprint reader detected"
+  echo "[fingerprint] Running fprintd-list to test reader..."
+  fprintd-list
+  
+  echo ""
+  echo "[fingerprint] You can now enroll your fingerprint by:"
+  echo ""
+  echo "  Option 1: Using KDE System Settings"
+  echo "    - Search for 'Users' in Activities"
+  echo "    - Click 'Fingerprint Login' and follow prompts"
+  echo ""
+  echo "  Option 2: Using command line"
+  echo "    - Run: fprintd-enroll"
+  echo "    - Scan your finger 10+ times when prompted"
+  echo ""
+  echo "  After enrollment, fingerprint will work for:"
+  echo "    - Screen unlock (via KDE)"
+  echo "    - sudo commands (with manual PAM configuration)"
+  echo ""
 }

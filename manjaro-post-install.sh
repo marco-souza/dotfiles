@@ -16,6 +16,8 @@ ensure_installed yt-dlp
 ensure_installed rg ripgrep
 ensure_installed gh github-cli
 ensure_installed inotifywait inotify-tools
+ensure_installed libfprint libfprint
+ensure_installed fprintd fprintd
 
 echo "[stow] apply dotfiles to the system"
 
@@ -154,6 +156,9 @@ echo "[evdi] Setup evdi module for displaylink"
 
 setup_evdi && clear
 
+echo "[fingerprint] Setting up fingerprint authentication"
+
+setup_fingerprint && clear
 
 echo ""
 echo "[complete] Manjaro post install script finished! 🎉"
