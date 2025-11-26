@@ -1,7 +1,7 @@
 #! /bin/bash
 
 source <(mise completion zsh)
-source <(fly completion zsh)
+source <(fly completion --shell zsh)
 
 
 # bun completions
