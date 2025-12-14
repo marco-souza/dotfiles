@@ -19,6 +19,13 @@ ensure_installed inotifywait inotify-tools
 ensure_installed libfprint libfprint
 ensure_installed fprintd fprintd
 
+# hyprland
+ensure_installed hyprland
+ensure_installed rofi
+ensure_installed playerctl
+ensure_installed wpctl
+ensure_installed brightnessctl
+
 echo "[stow] apply dotfiles to the system"
 
 stow_config mise
@@ -26,6 +33,7 @@ stow_config zsh
 stow_config tmux
 stow_config ghostty
 stow_config amp
+stow_config hyprland
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
 read reset_stow
