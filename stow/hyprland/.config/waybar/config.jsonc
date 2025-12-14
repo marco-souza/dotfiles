@@ -94,8 +94,8 @@
         }
     },
     "tray": {
-        "icon-size": 24,
-        "spacing": 10,
+        "icon-size": 20,
+        "spacing": 8,
         "icons": {
           "blueman": "bluetooth",
           "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
