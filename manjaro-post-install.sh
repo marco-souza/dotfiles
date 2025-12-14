@@ -11,40 +11,22 @@ ensure_installed nvim
 ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
-ensure_installed mixxx
 ensure_installed yt-dlp
+ensure_installed fprintd-enroll "fprintd libfprint"
 ensure_installed rg ripgrep
 ensure_installed gh github-cli
 ensure_installed inotifywait inotify-tools
-ensure_installed libfprint libfprint
-ensure_installed fprintd fprintd
+
+echo "[hypr] install hyprland"
 
 # hyprland
-ensure_installed hyprland
-ensure_installed hyprlauncher
-ensure_installed playerctl
-ensure_installed wpctl
-ensure_installed brightnessctl
-ensure_installed xdg-desktop-portal-hyprland
-ensure_installed dunst
-ensure_installed hypridle
-ensure_installed hyprlock
-ensure_installed hyprsunset
-ensure_installed hyprpolkitagent
-# pipewire
-ensure_installed pipewire
-ensure_installed wireplumber
-# qt
-ensure_installed qt5-wayland
-ensure_installed qt6-wayland
-# fonts
-ensure_installed sans-serif
-ensure_installed noto-fonts
-# deps
-ensure_installed grim 
-ensure_installed slurp
-# clipboard
-ensure_installed cliphist
+yay -Syu --noconfirm hyprland hyprlauncher playerctl \
+  wpctl brightnessctl xdg-desktop-portal-hyprland \
+  dunst hypridle hyprlock hyprsunset hyprpolkitagent \
+  qt5-wayland qt6-wayland pipewire wireplumber \
+  sans-serif noto-fonts \
+  grim ensure_installed slurp cliphist \
+  waybar
 
 echo "[stow] apply dotfiles to the system"
 
@@ -77,13 +59,14 @@ mise install
 
 echo "[os] Installing System Applications"
 
+ensure_installed steam
 ensure_installed ghostty
 ensure_installed zen-twilight
 ensure_installed localsend localsend-bin
 ensure_installed brave brave-bin
 ensure_installed 1password 1password-beta
 ensure_installed op 1password-cli
-ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-intel"
+# ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-intel"
 ensure_installed lutris "lutris-git lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"
 
 clear
