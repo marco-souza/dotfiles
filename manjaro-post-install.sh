@@ -25,8 +25,8 @@ ensure_installed hyprlauncher
 ensure_installed playerctl
 ensure_installed wpctl
 ensure_installed brightnessctl
-ensure_installed dunst
 ensure_installed xdg-desktop-portal-hyprland
+ensure_installed dunst
 ensure_installed hypridle
 ensure_installed hyprlock
 ensure_installed hyprsunset
@@ -37,10 +37,14 @@ ensure_installed wireplumber
 # qt
 ensure_installed qt5-wayland
 ensure_installed qt6-wayland
+# fonts
 ensure_installed sans-serif
 ensure_installed noto-fonts
+# deps
 ensure_installed grim 
 ensure_installed slurp
+# clipboard
+ensure_installed cliphist
 
 echo "[stow] apply dotfiles to the system"
 
