@@ -26,7 +26,7 @@ yay -Syu --noconfirm hyprland hyprlauncher playerctl \
   qt5-wayland qt6-wayland pipewire wireplumber \
   sans-serif noto-fonts \
   grim ensure_installed slurp cliphist \
-  waybar
+  waybar pavucontrol
 
 echo "[stow] apply dotfiles to the system"
 
