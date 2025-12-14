@@ -2,7 +2,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 32, // Waybar height (to be removed for auto height)
+    "height": 36, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 8, // Gaps between modules
     // Choose the order of the modules
@@ -11,9 +11,9 @@
         "hyprland/window"
     ],
     "modules-center": [
-        "network",
-        "clock",
-        "idle_inhibitor"
+      "idle_inhibitor",
+      "clock",
+      "network"
     ],
     "modules-right": [
         "mpd",
@@ -138,7 +138,7 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        "format-good": "", // An empty format will hide the module
+        // "format-good": "", // An empty format will hide the module
         "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
