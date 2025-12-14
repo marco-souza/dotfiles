@@ -39,6 +39,8 @@ ensure_installed qt5-wayland
 ensure_installed qt6-wayland
 ensure_installed sans-serif
 ensure_installed noto-fonts
+ensure_installed grim 
+ensure_installed slurp
 
 echo "[stow] apply dotfiles to the system"
 
