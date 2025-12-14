@@ -21,10 +21,24 @@ ensure_installed fprintd fprintd
 
 # hyprland
 ensure_installed hyprland
-ensure_installed rofi
+ensure_installed hyprlauncher
 ensure_installed playerctl
 ensure_installed wpctl
 ensure_installed brightnessctl
+ensure_installed dunst
+ensure_installed xdg-desktop-portal-hyprland
+ensure_installed hypridle
+ensure_installed hyprlock
+ensure_installed hyprsunset
+ensure_installed hyprpolkitagent
+# pipewire
+ensure_installed pipewire
+ensure_installed wireplumber
+# qt
+ensure_installed qt5-wayland
+ensure_installed qt6-wayland
+ensure_installed sans-serif
+ensure_installed noto-fonts
 
 echo "[stow] apply dotfiles to the system"
 
