@@ -16,6 +16,7 @@
       "network"
     ],
     "modules-right": [
+        "tray",
         "mpd",
         "pulseaudio",
         "power-profiles-daemon",
@@ -25,7 +26,6 @@
         // "backlight",
         // "keyboard-state",
         "battery",
-        "tray",
         "custom/power"
     ],
     // Modules configuration
