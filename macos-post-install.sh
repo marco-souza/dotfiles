@@ -54,6 +54,7 @@ ensure_cask_installed ghostty ghostty
 ensure_cask_installed localsend localsend
 ensure_cask_installed brave brave-browser
 ensure_cask_installed 1password 1password
+ensure_cask_installed op 1password-cli
 ensure_cask_installed obsidian obsidian
 
 clear
