@@ -2,7 +2,7 @@
 
 source <(docker completion zsh)
 source <(mise completion zsh)
-source <(fly completion --shell zsh)
+source <(fly completion zsh)
 
 
 # bun completions
