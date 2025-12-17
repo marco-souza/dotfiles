@@ -16,7 +16,7 @@ ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
 ensure_installed ripgrep rg
-ensure_installed gh github-cli
+ensure_installed gh
 ensure_installed fzf fzf
 ensure_installed bat bat
 ensure_installed eza eza
