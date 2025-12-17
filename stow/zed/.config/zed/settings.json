@@ -1,0 +1,112 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "context_servers": {
+    "docker-mcp-toolkit": {
+      "enabled": true,
+      "command": "docker",
+      "args": [
+        "mcp",
+        "gateway",
+        "run"
+      ],
+      "env": {}
+    }
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "profiles": {
+      "full-power": {
+        "default_model": {
+          "provider": "copilot_chat",
+          "model": "gemini-3-pro-preview"
+        },
+        "name": "Full power",
+        "tools": {
+          "thinking": true,
+          "terminal": true,
+          "diagnostics": true,
+          "edit_file": true,
+          "fetch": true,
+          "find_path": true,
+          "grep": true,
+          "list_directory": true,
+          "move_path": true,
+          "open": true,
+          "now": true,
+          "read_file": true,
+          "delete_path": true,
+          "create_directory": true,
+          "copy_path": true
+        },
+        "enable_all_context_servers": false,
+        "context_servers": {
+          "docker-mcp-toolkit": {
+            "tools": {
+              "browser_wait_for": true,
+              "convert_time": true,
+              "fetch": true,
+              "get-library-docs": true,
+              "get_current_time": true,
+              "obsidian_append_content": true,
+              "obsidian_complex_search": true,
+              "obsidian_get_file_contents": true,
+              "obsidian_delete_file": true,
+              "obsidian_get_periodic_note": true,
+              "obsidian_get_recent_changes": true,
+              "obsidian_get_recent_periodic_notes": true,
+              "obsidian_list_files_in_vault": true,
+              "browser_type": true,
+              "browser_take_screenshot": true,
+              "browser_snapshot": true,
+              "browser_tabs": true,
+              "browser_select_option": true,
+              "browser_run_code": true,
+              "browser_resize": true,
+              "browser_press_key": true,
+              "browser_network_requests": true,
+              "browser_navigate": true,
+              "browser_navigate_back": true,
+              "browser_install": true,
+              "browser_hover": true,
+              "browser_handle_dialog": true,
+              "browser_fill_form": true,
+              "browser_file_upload": true,
+              "browser_evaluate": true,
+              "browser_drag": true,
+              "browser_console_messages": true,
+              "browser_close": true,
+              "browser_click": true,
+              "obsidian_batch_get_file_contents": true,
+              "obsidian_list_files_in_dir": true,
+              "obsidian_patch_content": true,
+              "obsidian_simple_search": true,
+              "resolve-library-id": true
+            }
+          }
+        }
+      }
+    },
+    "default_profile": "full-power",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5"
+    },
+    "model_parameters": []
+  },
+  "vim_mode": true,
+  "base_keymap": "VSCode",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Dark"
+  }
+}

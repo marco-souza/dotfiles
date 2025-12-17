@@ -14,6 +14,7 @@ Dotfiles and post-installation scripts for Manjaro Linux and macOS. Uses GNU Sto
   - **tmux/**: Terminal multiplexer configuration
   - **ghostty/**: Terminal emulator configuration
   - **amp/**: Amp AI tool configuration (settings.json)
+  - **zed/**: Zed editor configuration (settings.json)
   - **hyprland/**: Window manager config (Linux only)
 
 ## Key Commands
