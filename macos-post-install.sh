@@ -29,6 +29,7 @@ stow_config tmux
 stow_config ghostty
 stow_config amp
 stow_config zed
+stow_config gemini
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
 read reset_stow

@@ -52,6 +52,8 @@ function stow_config() {
   package=$1
   flags=$2
 
+  echo "  * stowing $package"
+
   cd stow
   stow $flags --target $HOME $package --adopt
   cd ..

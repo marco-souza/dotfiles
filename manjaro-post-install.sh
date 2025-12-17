@@ -35,6 +35,8 @@ stow_config zsh
 stow_config tmux
 stow_config ghostty
 stow_config amp
+stow_config zed
+stow_config gemini
 stow_config hyprland
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
