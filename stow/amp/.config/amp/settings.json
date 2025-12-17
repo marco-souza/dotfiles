@@ -1,10 +1,6 @@
 // https://ampcode.com/manual#configuration
 {
   "amp.mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest", "--headless", "--isolated"]
-    },
     "docker": {
       "command": "docker",
       "args": ["mcp", "gateway", "run"]

@@ -112,5 +112,6 @@ fi
 # Custom
 ################
     alias notes="tnw -c ~/w/marco-souza/notes/ nvim"
+    alias dotfiles="tnw -c ~/w/marco-souza/dotfiles/ nvim"
     alias evim="tnw -c ~/.config/nvim/ nvim"
     alias wo="workon"
