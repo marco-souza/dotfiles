@@ -15,11 +15,11 @@ ensure_installed nvim
 ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
-ensure_installed ripgrep rg
 ensure_installed gh
-ensure_installed fzf fzf
-ensure_installed bat bat
-ensure_installed eza eza
+ensure_installed fzf
+ensure_installed bat
+ensure_installed eza
+ensure_installed rg ipgrep
 
 echo "[stow] apply dotfiles to the system"
 
@@ -28,6 +28,7 @@ stow_config zsh
 stow_config tmux
 stow_config ghostty
 stow_config amp
+stow_config zed
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
 read reset_stow
