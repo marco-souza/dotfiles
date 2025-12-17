@@ -138,7 +138,7 @@ function configure_macos_defaults() {
   echo "[macos] Configuring system defaults..."
 
   # Set hostname (requires interaction)
-  # sudo scutil --set ComputerName "Your Mac Name"
+  sudo scutil --set ComputerName "m3o.osx"
 
   # Show hidden files
   defaults write com.apple.finder AppleShowAllFiles -bool true
@@ -222,17 +222,17 @@ function setup_omz() {
 
 function setup_fingerprint() {
   echo "[fingerprint] Checking for fingerprint reader..."
-  
+
   # Check if fingerprint reader is available
   if ! lsusb | grep -q "27c6"; then
     echo "[fingerprint] No Goodix fingerprint reader detected"
     return
   fi
-  
+
   echo "[fingerprint] Goodix fingerprint reader detected"
   echo "[fingerprint] Running fprintd-list to test reader..."
   fprintd-list
-  
+
   echo ""
   echo "[fingerprint] You can now enroll your fingerprint by:"
   echo ""
