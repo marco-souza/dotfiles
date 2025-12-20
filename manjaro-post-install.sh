@@ -12,11 +12,31 @@ ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
 ensure_installed yt-dlp
-ensure_installed docker "docker docker-compose"
 ensure_installed fprintd-enroll "fprintd libfprint"
 ensure_installed rg ripgrep
 ensure_installed gh github-cli
 ensure_installed inotifywait inotify-tools
+
+echo "[os] System dependencies installed - enter to continue"
+
+read continue
+clear
+
+echo "[docker] install docker tools"
+
+ensure_installed docker
+ensure_installed docker-compose
+ensure_installed docker-mcp
+
+sudo usermod -aG docker $USER
+
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+
+echo "[docker] docker tools installed - enter to continue"
+
+read continue
+clear
 
 echo "[hypr] install hyprland"
 
