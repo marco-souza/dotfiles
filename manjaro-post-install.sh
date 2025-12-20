@@ -38,6 +38,19 @@ echo "[docker] docker tools installed - enter to continue"
 read continue
 clear
 
+echo "[mcp] Enable MCP servers via docker-mcp"
+
+docker mcp server enable playwright
+docker mcp server enable context7
+docker mcp server enable obsidian
+docker mcp server enable fetch
+docker mcp server enable time
+
+echo "[mcp] MCP servers enabled - enter to continue"
+
+read continue
+clear
+
 echo "[hypr] install hyprland"
 
 # hyprland
