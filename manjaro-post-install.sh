@@ -105,6 +105,12 @@ ensure_installed brave-bin
 ensure_installed 1password-beta
 ensure_installed 1password-cli
 
+echo "[tui] Installing terminal apps"
+
+ensure_installed k9s
+ensure_installed lazygit
+ensure_installed lazydocker
+
 # echo "[games] install steam native"
 # ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-intel"
 
