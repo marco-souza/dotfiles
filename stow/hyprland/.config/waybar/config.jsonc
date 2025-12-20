@@ -11,9 +11,10 @@
         "hyprland/window"
     ],
     "modules-center": [
-      "idle_inhibitor",
-      "clock",
-      "network"
+        "custom/power",
+        "clock",
+        "idle_inhibitor"
+        // "network"
     ],
     "modules-right": [
         "tray",
@@ -26,7 +27,8 @@
         // "backlight",
         // "keyboard-state",
         "battery",
-        "custom/power"
+        "network"
+        // "custom/power"
     ],
     // Modules configuration
     "hyprland/workspaces": {
@@ -94,7 +96,7 @@
         }
     },
     "tray": {
-        "icon-size": 20,
+        "icon-size": 16,
         "spacing": 8,
         "icons": {
           "blueman": "bluetooth",
@@ -104,7 +106,7 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        // "format": "{:%Y-%m-%d}",
+        "format": "{:%B %d, %H:%M}",
         "format-alt": "{:%Y-%m-%d}"
     },
     // "cpu": {
@@ -129,16 +131,16 @@
     // },
     "battery": {
         "states": {
-            "good": 95,
+            "good": 90,
             "warning": 30,
-            "critical": 15
+            "critical": 10
         },
         "format": "{capacity}% {icon}",
+        "format-alt": "{time} {icon}",
         "format-full": "{capacity}% {icon}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
+        "format-good": "", // An empty format will hide the module
         "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
@@ -197,8 +199,8 @@
     //     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     // },
     "custom/power": {
-        "format" : "⏻ ",
-        "tooltip": false,
+        "format" : "⏻",
+        "tooltip": true,
         "menu": "on-click",
         "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
         "menu-actions": {
