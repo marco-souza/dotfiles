@@ -13,7 +13,8 @@ function ensure_installed() {
   install_cmd=${2:-$1}
 
   # has command? skip
-  if [[ -x $(command -v $cmd) ]]; then
+  if [ $(yay -Q | grep "$install_cmd" | wc -l) -gt 0 ]; then
+    echo "- $install_cmd already installed"
     return
   fi
 

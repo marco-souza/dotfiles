@@ -12,10 +12,11 @@ ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
 ensure_installed yt-dlp
-ensure_installed fprintd-enroll "fprintd libfprint"
-ensure_installed rg ripgrep
-ensure_installed gh github-cli
-ensure_installed inotifywait inotify-tools
+ensure_installed fprintd
+ensure_installed libfprint
+ensure_installed ripgrep
+ensure_installed github-cli
+ensure_installed inotify-tools
 
 echo "[os] System dependencies installed - enter to continue"
 
@@ -60,7 +61,7 @@ yay -Syu --noconfirm hyprland hyprlauncher playerctl \
   hyprcursor hypremoji \
   qt5-wayland qt6-wayland pipewire wireplumber \
   sans-serif noto-fonts \
-  grim ensure_installed slurp cliphist \
+  grim slurp cliphist \
   waybar pavucontrol btop
 
 echo "[stow] apply dotfiles to the system"
@@ -99,16 +100,31 @@ echo "[os] Installing System Applications"
 ensure_installed steam
 ensure_installed ghostty
 ensure_installed zen-twilight
-ensure_installed localsend localsend-bin
-ensure_installed brave brave-bin
-ensure_installed 1password 1password-beta
-ensure_installed op 1password-cli
+ensure_installed localsend-bin
+ensure_installed brave-bin
+ensure_installed 1password-beta
+ensure_installed 1password-cli
+
+# echo "[games] install steam native"
 # ensure_installed steam-native "steam-native-runtime vulkan-intel lib32-vulkan-intel"
-ensure_installed lutris "lutris-git lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"
-# Agentic IDEs
+
+echo "[games] Installing Lutris"
+
+ensure_installed lutris-git \
+  "lutris-git lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"
+
+echo "[games] Installed successfully"
+
+read continue
+clear
+
+echo "[ai] Installing Agentic IDEs"
+
 ensure_installed zed
 ensure_installed antigravity
 
+echo "[games] Agentic IDEs installed successfully"
+read continue
 clear
 
 if [ ! -f /etc/1password/custom_allowed_browsers ]; then
