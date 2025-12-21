@@ -17,6 +17,7 @@ ensure_installed libfprint
 ensure_installed ripgrep
 ensure_installed github-cli
 ensure_installed inotify-tools
+ensure_installed blueman
 
 echo "[os] System dependencies installed - enter to continue"
 
