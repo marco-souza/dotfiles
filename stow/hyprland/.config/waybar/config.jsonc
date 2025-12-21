@@ -1,8 +1,9 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 36, // Waybar height (to be removed for auto height)
+    "layer": "top",
+    "position": "top",
+    "margin-top": 6,
+    "height": 36,
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules
     // Choose the order of the modules
@@ -20,14 +21,14 @@
         "tray",
         "mpd",
         "pulseaudio",
-        "power-profiles-daemon",
         // "cpu",
         // "memory",
         // "temperature",
         // "backlight",
         // "keyboard-state",
         "battery",
-        "network"
+        "network",
+        "power-profiles-daemon"
         // "custom/power"
     ],
     // Modules configuration
@@ -91,8 +92,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": " ",
+            "deactivated": " "
         }
     },
     "tray": {
@@ -152,10 +153,10 @@
       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
       "tooltip": true,
       "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
+        "default": " ",
+        "performance": " ",
+        "balanced": "  ",
+        "power-saver": "  "
       }
     },
     "network": {
@@ -168,23 +169,20 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
-        // "format": "{volume}% {icon}  {format_source}",
-        // "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format": "{icon}  {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "🔇 {icon} {format_source}",
-        "format-muted": "🔇  {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
+        "scroll-step": 1,
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-muted": "🔇 {volume}%",
+        "format-source": "",
+        "format-source-muted": " ",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "headphone": "🎧",
+            "hands-free": "📞",
+            "headset": "🎧",
+            "phone": "📱",
+            "portable": "📱",
+            "car": "🚗",
+            "default": ["🔈", "🔉", "🔊"]
         },
         "on-click": "pavucontrol"
     },
@@ -201,10 +199,13 @@
     //     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     // },
     "custom/power": {
-        "format" : "⏻",
+        "format" : "{icon}",
+        "format-icons": {
+          "default": "⏻"
+        },
         "tooltip": true,
         "menu": "on-click",
-        "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+        "menu-file": "$HOME/.config/waybar/power_menu.xml",
         "menu-actions": {
             "shutdown": "shutdown",
             "reboot": "reboot",
@@ -213,3 +214,4 @@
         }
     }
 }
+
