@@ -18,6 +18,7 @@ ensure_installed ripgrep
 ensure_installed github-cli
 ensure_installed inotify-tools
 ensure_installed blueman
+ensure_installed flameshot
 
 echo "[os] System dependencies installed - enter to continue"
 
@@ -75,6 +76,8 @@ stow_config amp
 stow_config zed
 stow_config gemini
 stow_config hyprland
+stow_config grim
+stow_config flameshot
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
 read reset_stow
