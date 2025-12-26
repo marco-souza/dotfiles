@@ -1,5 +1,8 @@
 // https://ampcode.com/manual#configuration
 {
+  "amp.anthropic.thinking.enabled": true,
+  "amp.experimental.dojoMode": false,
+  "amp.fuzzy.alwaysIncludePaths": [],
   "amp.mcpServers": {
     "docker": {
       "command": "docker",
