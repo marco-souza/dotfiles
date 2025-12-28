@@ -60,7 +60,7 @@ echo "[hypr] install hyprland"
 yay -Syu --noconfirm hyprland hyprlauncher playerctl \
   wpctl brightnessctl xdg-desktop-portal-hyprland \
   dunst hypridle hyprlock hyprsunset hyprpolkitagent \
-  hyprcursor hypremoji \
+  hyprcursor hypremoji hyprpaper \
   qt5-wayland qt6-wayland pipewire wireplumber \
   sans-serif noto-fonts \
   grim slurp cliphist \
