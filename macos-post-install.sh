@@ -19,7 +19,9 @@ ensure_installed gh
 ensure_installed fzf
 ensure_installed bat
 ensure_installed eza
-ensure_installed rg ipgrep
+ensure_installed ripgrep
+ensure_installed eza
+ensure_installed mole
 
 echo "[stow] apply dotfiles to the system"
 

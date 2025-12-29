@@ -12,21 +12,28 @@ function ensure_installed() {
   cmd=$1
   install_cmd=${2:-$1}
 
-  # has command? skip
-  if [ $(yay -Q | grep "$install_cmd" | wc -l) -gt 0 ]; then
-    echo "- $install_cmd already installed"
-    return
-  fi
-
   os=$(detect_os)
 
   if [[ "$os" == "linux" ]]; then
+    # has command? skip
+    if [ $(yay -Q | grep "$install_cmd" | wc -l) -gt 0 ]; then
+      echo "- $install_cmd already installed"
+      return
+    fi
+
     if [[ -x $(command -v yay) ]]; then
       yay -Syu $install_cmd --noconfirm
     else
       sudo pamac install $install_cmd --no-confirm
     fi
+
   elif [[ "$os" == "macos" ]]; then
+    # has command? skip
+    if [ $(brew list --versions $install_cmd | wc -l) -gt 0 ]; then
+      echo "- $install_cmd already installed"
+      return
+    fi
+
     brew install $install_cmd
   fi
 }
