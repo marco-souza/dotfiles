@@ -6,6 +6,8 @@ source ./scripts/useful-functions.sh
 echo "[os] Installing System dependencies"
 
 ensure_installed yay
+ensure_installed fakeroot
+ensure_installed pkg-config
 ensure_installed mise
 ensure_installed nvim
 ensure_installed stow
