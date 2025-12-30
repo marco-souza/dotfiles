@@ -45,6 +45,9 @@ clear
 
 echo "[mcp] Enable MCP servers via docker-mcp"
 
+docker mcp catalog init
+docker mcp catalog update
+
 docker mcp server enable playwright
 docker mcp server enable context7
 docker mcp server enable obsidian
