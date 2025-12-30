@@ -7,9 +7,9 @@ echo "[os] Installing System dependencies"
 
 ensure_installed yay
 ensure_installed fakeroot
-ensure_installed pkg-config
+ensure_installed pkgconf
 ensure_installed mise
-ensure_installed nvim
+ensure_installed neovim
 ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
