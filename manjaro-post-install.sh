@@ -59,6 +59,30 @@ echo "[mcp] MCP servers enabled - enter to continue"
 read continue
 clear
 
+echo "[tailscale] Installing Tailscale"
+
+ensure_installed tailscale "tailscale trayscale"
+sudo systemctl enable tailscaled
+sudo systemctl start tailscaled
+
+echo "[tailscale] Tailscale enabled - enter to continue"
+read continue
+clear
+
+echo "[k3s] Installing k3s"
+
+# Check for Ready node, takes ~30 seconds
+curl -sfL https://get.k3s.io | sh -
+
+sudo systemctl enable k3s
+sudo systemctl start k3s
+
+sudo k3s kubectl get node
+
+echo "[k3s] k3s enabled - enter to continue"
+read continue
+clear
+
 echo "[hypr] install hyprland"
 
 # hyprland

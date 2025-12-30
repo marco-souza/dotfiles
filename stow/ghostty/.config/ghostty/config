@@ -1,6 +1,7 @@
 #! /bin/bash
 
-theme = dark:Rose Pine,light:Rose Pine Dawn
+# theme = dark:Rose Pine,light:Rose Pine Dawn
+theme = Rose Pine
 shell-integration = zsh
 
 # opacity
