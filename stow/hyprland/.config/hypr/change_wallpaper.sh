@@ -11,4 +11,4 @@ sleep 1
 
 hyprctl hyprpaper unload unused
 
-notify-send "Changing wallpaper to $WALLPAPER"
+# notify-send "Changing wallpaper to $WALLPAPER"
