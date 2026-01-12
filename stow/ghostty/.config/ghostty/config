@@ -2,3 +2,6 @@
 
 theme = dark:Rose Pine,light:Rose Pine Dawn
 shell-integration = zsh
+
+# opacity
+background-opacity = 0.70
