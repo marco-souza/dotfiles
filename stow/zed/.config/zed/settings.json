@@ -96,7 +96,7 @@
     "default_profile": "full-power",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5"
+      "model": "gemini-3-pro-preview"
     },
     "model_parameters": []
   },
