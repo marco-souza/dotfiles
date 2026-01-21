@@ -2,7 +2,7 @@
 hello = "echo 'Hello from mise'"
 
 [env]
-# _.file = ".env"
+_.file = ".env"
 # _.path = ".node_modules/bin"
 WORKSPACE = "{{env.HOME}}/w/"
 SHELL = "/bin/zsh"
