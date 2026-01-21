@@ -5,3 +5,4 @@ shell-integration = zsh
 
 # opacity
 background-opacity = 0.70
+background-opacity-cells = true
