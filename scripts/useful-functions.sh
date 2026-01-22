@@ -16,25 +16,25 @@ function ensure_installed() {
 
   if [[ "$os" == "linux" ]]; then
     # has command? skip
-    if [ $(yay -Q | grep "$install_cmd" | wc -l) -gt 0 ]; then
+    if [ "$(yay -Q | grep -c "$install_cmd")" -gt 0 ]; then
       echo "- $install_cmd already installed"
       return
     fi
 
     if [[ -x $(command -v yay) ]]; then
-      yay -Syu $install_cmd --noconfirm
+      yay -Syu "$install_cmd" --noconfirm
     else
-      sudo pamac install $install_cmd --no-confirm
+      sudo pamac install "$install_cmd" --no-confirm
     fi
 
   elif [[ "$os" == "macos" ]]; then
     # has command? skip
-    if [ $(brew list --versions $install_cmd | wc -l) -gt 0 ]; then
+    if [ "$(brew list --versions "$install_cmd" | wc -l)" -gt 0 ]; then
       echo "- $install_cmd already installed"
       return
     fi
 
-    brew install $install_cmd
+    brew install "$install_cmd"
   fi
 }
 
@@ -42,8 +42,8 @@ function mise_ensure_installed() {
   cmd=$1
   install_cmd=${2:-$1}
 
-  if [[ ! -x $(command -v $cmd) ]]; then
-    mise use -g $install_cmd
+  if [[ ! -x "$(command -v "$cmd")" ]]; then
+    mise use -g "$install_cmd"
   fi
 }
 
@@ -51,8 +51,8 @@ function npm_ensure_installed() {
   cmd=$1
   install_cmd=${2:-$1}
 
-  if [[ ! -x $(command -v $cmd) ]]; then
-    npm install -g $install_cmd
+  if [[ ! -x "$(command -v "$cmd")" ]]; then
+    npm install -g "$install_cmd"
   fi
 }
 
@@ -62,29 +62,30 @@ function stow_config() {
 
   echo "  * stowing $package"
 
-  cd stow
-  stow $flags --target $HOME $package --adopt
+  cd stow || return
+
+  stow "$flags" --target "$HOME" "$package" --adopt
   cd ..
 }
 
 function setup_wakatime_config() {
-  wakatime_api_secret=$(op item get $(op item list | grep wakatime | awk '{ print $1 }') --fields "label=API Secret" --reveal)
+  wakatime_api_secret=$(op item get "$(op item list | grep wakatime | awk '{ print $1 }')" --fields "label=API Secret" --reveal)
 
   if [ -z "$wakatime_api_secret" ]; then
     echo "[op]   Wakatime API Secret not found in 1password. Please create an item in 1password with the label 'Wakatime' and a field 'API Secret' containing your Wakatime API key."
     exit 1
   fi
 
-echo "
+  echo "
 [settings]
 debug = false
 api_key = $wakatime_api_secret
-" > $HOME/.wakatime.cfg
+" >"$HOME/.wakatime.cfg"
 }
 
 function setup_nvim() {
   echo "[nvim]   Cloning scratch.nvim config"
-  git clone git@github.com:marco-souza/nvim.git $HOME/.config/nvim
+  git clone git@github.com:marco-souza/nvim.git "$HOME/.config/nvim"
 
   echo "[nvim]   Installing plugins"
   nvim --headless +"Lazy! sync" +qa
@@ -111,11 +112,11 @@ function ensure_cask_installed() {
   cmd=$1
   install_cmd=${2:-$1}
 
-  if [[ -x $(command -v $cmd) ]]; then
+  if [[ -x $(command -v "$cmd") ]]; then
     return
   fi
 
-  brew install --cask $install_cmd
+  brew install --cask "$install_cmd"
 }
 
 function setup_evdi() {
@@ -126,22 +127,22 @@ function setup_evdi() {
   export EVDI_VERSION=${1:-1.14.11}
 
   # re-build displaylink to support linux 6+
-  cd /tmp/
-  rm ./evdi -rf
+  cd /tmp/ || return
+  rm -rf ./evdi
 
   git clone https://github.com/DisplayLink/evdi /tmp/evdi
-  sudo cp -r /tmp/evdi/module/* /usr/src/evdi-$EVDI_VERSION/
+  sudo cp -r /tmp/evdi/module/* "/usr/src/evdi-$EVDI_VERSION/"
 
   # build and install dkms evdi driver for displaylink (Linux 6+)
-  sudo dkms build -m evdi -v $EVDI_VERSION --force
-  sudo dkms install -m evdi -v $EVDI_VERSION --force
+  sudo dkms build -m evdi -v "$EVDI_VERSION" --force
+  sudo dkms install -m evdi -v "$EVDI_VERSION" --force
 
   sudo systemctl enable displaylink
   sudo systemctl start displaylink
 
   echo 'All good! Please restart you system to ensure it works fine.'
 
-  cd -
+  cd - || return
 }
 
 function configure_macos_defaults() {
@@ -210,24 +211,24 @@ function setup_zsh() {
 }
 
 function setup_omz() {
-   omz_install() {
-     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-   }
+  omz_install() {
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  }
 
-   OMZ_HOME=$HOME/.oh-my-zsh
-   if [ ! -d $OMZ_HOME ]; then
-     echo "[omz] Installing Oh My Zsh"
-     omz_install
-   else
-     echo "[omz] Oh My Zsh already installed, wanna reset it? [y/N]"
-     read reset_omz
+  OMZ_HOME=$HOME/.oh-my-zsh
+  if [ ! -d "$OMZ_HOME" ]; then
+    echo "[omz] Installing Oh My Zsh"
+    omz_install
+  else
+    echo "[omz] Oh My Zsh already installed, wanna reset it? [y/N]"
+    read -r reset_omz
 
-     if [ "$reset_omz" = "y" ] || [ "$reset_omz" = "Y" ]; then
-       echo "[omz] resetting Oh My Zsh"
-       rm -rf $OMZ_HOME
-       omz_install
-     fi
-   fi
+    if [ "$reset_omz" = "y" ] || [ "$reset_omz" = "Y" ]; then
+      echo "[omz] resetting Oh My Zsh"
+      rm -rf "$OMZ_HOME"
+      omz_install
+    fi
+  fi
 }
 
 function setup_fingerprint() {

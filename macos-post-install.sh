@@ -34,7 +34,7 @@ stow_config zed
 stow_config gemini
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
-read reset_stow
+read -r reset_stow
 
 if [ "$reset_stow" = "y" ] || [ "$reset_stow" = "Y" ]; then
   echo "[stow] resetting stow configs"
@@ -67,7 +67,7 @@ ensure_cask_installed obsidian obsidian
 clear
 
 echo "[macos] Configuring system defaults [y/N]"
-read configure_defaults
+read -r configure_defaults
 
 if [ "$configure_defaults" = "y" ] || [ "$configure_defaults" = "Y" ]; then
   configure_macos_defaults
@@ -80,21 +80,22 @@ echo "[op] now open 1password, sign in, and setup ssh integration"
 echo ""
 echo "     [press any key to continue]"
 
-read next
+read -r next
 
 clear
 
 echo "[op] setup wakatime credentials"
 
-if [ -f $HOME/.wakatime.cfg ]; then
+wakatime_file="$HOME/.wakatime.cfg"
+if [ -f "$wakatime_file" ]; then
   echo "[op]   Wakatime config file already exists"
   echo ""
   echo "     [press 'r' to reset, any key to continue]"
-  read next
+  read -r next
 
   if [ "$next" = "r" ]; then
     echo "[op]   Backing up existing Wakatime config to $HOME/.wakatime.cfg.bkp"
-    mv $HOME/.wakatime.cfg $HOME/.wakatime.cfg.bkp
+    mv "$wakatime_file" "$wakatime_file.bkp"
 
     setup_wakatime_config
   fi
@@ -115,18 +116,18 @@ if [ -n "$git_name_set" ] && [ -n "$git_email_set" ]; then
   echo "     Email: $git_email_set"
   echo ""
   echo "     [press 'e' to edit, any key to skip]"
-  read next
+  read -r next
 fi
 
 if [ "$next" = "e" ] || [ -z "$git_name_set" ] || [ -z "$git_email_set" ]; then
   echo "[op]   What is your name?"
-  read name
+  read -r name
 
   echo "[op]   What is your email?"
-  read email
+  read -r email
 
-  git config --global user.email $email
-  git config --global user.name $name
+  git config --global user.email "$email"
+  git config --global user.name "$name"
 
   git config --global init.defaultBranch main
 fi
@@ -135,15 +136,16 @@ clear
 
 echo "[nvim] Setting up nvim..."
 
-if [ -d $HOME/.config/nvim/.git/ ]; then
+nvim_config_dir="$HOME/.config/nvim"
+if [ -d "$nvim_config_dir/.git/" ]; then
   echo "[nvim]   nvim already configured"
   echo ""
   echo "     [press 'r' to reset, any key to skip]"
-  read next
+  read -r next
 
   if [ "$next" = "r" ]; then
     echo "[nvim]   Backing up existing nvim config to $HOME/.config/nvim.bkp"
-    mv $HOME/.config/nvim $HOME/.config/nvim.bkp
+    mv "$nvim_config_dir" "$nvim_config_dir.bkp"
 
     setup_nvim
   fi
