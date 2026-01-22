@@ -3,6 +3,7 @@
 # Setup environment variables
 export EDITOR="nvim"
 export BROWSER="zen-twilight"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.mise/bin"
 
 eval "$(mise activate)"
 
