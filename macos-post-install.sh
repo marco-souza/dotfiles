@@ -4,7 +4,7 @@
 source ./scripts/useful-functions.sh
 
 echo "[os] Installing Homebrew"
-if ! command -v brew &> /dev/null; then
+if ! command -v brew &>/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
@@ -50,6 +50,9 @@ echo "[omz] Oh My Zsh setup"
 setup_omz
 
 echo "[mise] Installing dependencies"
+mise trust ~
+mise trust ~/w
+
 mise install
 
 echo "[os] Installing System Applications"
