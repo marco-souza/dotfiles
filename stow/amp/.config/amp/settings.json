@@ -12,5 +12,6 @@
         "run"
       ]
     }
-  }
+  },
+  "amp.dangerouslyAllowAll": true
 }

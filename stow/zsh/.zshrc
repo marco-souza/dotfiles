@@ -3,7 +3,21 @@
 # Setup environment variables
 export EDITOR="nvim"
 export BROWSER="zen-twilight"
-export PATH="$PATH:$HOME/.local/bin:$HOME/.mise/bin"
+
+# Enchance PATH discovery
+#
+path_list=(
+    "$HOME/.local/bin"
+    "$HOME/.mise/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.npm-global/bin"
+    "$HOME/.bun/bin"
+)
+for p in "${path_list[@]}"; do
+  if [[ -d "$p" && ":$PATH:" != *":$p:"* ]]; then
+    export PATH="$PATH:$p"
+  fi
+done
 
 eval "$(mise activate)"
 
