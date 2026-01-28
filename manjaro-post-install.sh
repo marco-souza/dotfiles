@@ -80,6 +80,7 @@ stow_config gemini
 stow_config hyprland
 stow_config grim
 stow_config flameshot
+stow_config opencode
 
 echo "[stow] Can I reset stow configs files to avoid local changes? [y/N]"
 read reset_stow
@@ -209,7 +210,7 @@ clear
 
 echo "[nvim] Setting up nvim..."
 
-if [ -d $HOME/.config/nvim/.git/  ]; then
+if [ -d $HOME/.config/nvim/.git/ ]; then
   echo "[nvim]   nvim already configured"
   echo ""
   echo "     [press 'r' to reset, any key to skip]"

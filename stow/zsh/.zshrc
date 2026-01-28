@@ -5,7 +5,6 @@ export EDITOR="nvim"
 export BROWSER="zen-twilight"
 
 # Enchance PATH discovery
-#
 path_list=(
     "$HOME/.local/bin"
     "$HOME/.mise/bin"
