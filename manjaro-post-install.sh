@@ -21,8 +21,24 @@ ensure_installed github-cli
 ensure_installed inotify-tools
 ensure_installed blueman
 ensure_installed flameshot
+ensure_installed wdisplays
 
 echo "[os] System dependencies installed - enter to continue"
+
+read continue
+clear
+
+echo "[tailscale] install tailscale"
+
+ensure_installed tailscale
+
+sudo systemctl enable tailscaled.service
+sudo systemctl start tailscaled.service
+
+echo "[tailscale] sign in on the browser"
+sudo tailscale up # sign in to tailscale, follow the instructions in the browser
+
+echo "[tailscale] installed - enter to continue"
 
 read continue
 clear
