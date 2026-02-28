@@ -81,7 +81,7 @@ yay -Syu --noconfirm hyprland hyprlauncher playerctl \
   hyprcursor hypremoji hyprpaper \
   qt5-wayland qt6-wayland pipewire wireplumber \
   sans-serif noto-fonts \
-  grim slurp cliphist \
+  grim slurp cliphist ulauncher \
   waybar pavucontrol btop
 
 echo "[stow] apply dotfiles to the system"
