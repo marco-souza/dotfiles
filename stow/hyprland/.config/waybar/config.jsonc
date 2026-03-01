@@ -8,7 +8,7 @@
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["custom/power", "clock", "idle_inhibitor"],
   "modules-right": [
-    "mpd",
+    "custom/media",
     "group/tray-expander",
     "pulseaudio",
     "battery",
@@ -23,19 +23,6 @@
   "hyprland/window": {
     "separate-outputs": true,
     "swap-icon-label": true,
-  },
-  "mpd": {
-    "format": "{stateIcon} {artist} - {title}",
-    "format-disconnected": "mpd",
-    "format-stopped": "stopped",
-    "unknown-tag": "N/A",
-    "interval": 5,
-    "state-icons": {
-      "paused": "",
-      "playing": "",
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)",
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -127,5 +114,12 @@
       "shutdown": "shutdown now",
       "reboot": "reboot",
     },
+  },
+  "custom/media": {
+    "exec": "$HOME/.config/waybar/media.sh",
+
+    "interval": 1,
+    "on-click": "playerctl play-pause",
+    "max-length": 36,
   },
 }
