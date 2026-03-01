@@ -22,7 +22,7 @@ Paused)
   ;;
 esac
 
-max_width=32
+max_width=28
 jump_size=1
 pause_time=2
 counter_file="/tmp/waybar_media_scroll"
