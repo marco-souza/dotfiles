@@ -113,6 +113,7 @@
     "menu-actions": {
       "shutdown": "shutdown now",
       "reboot": "reboot",
+      "logout": "loginctl terminate-user $USER",
     },
   },
   "custom/media": {
