@@ -15,8 +15,8 @@
         "idle_inhibitor"
     ],
     "modules-right": [
-        "group/tray-expander",
         "mpd",
+    "group/tray-expander",
         "pulseaudio",
         "battery",
         "network",
