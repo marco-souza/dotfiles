@@ -1,8 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
   // Theme configuration
-  "theme": "opencode",
-  "model": "google/antigravity-claude-opus-4-6-thinking",
-  "plugin": ["opencode-antigravity-auth@latest"],
+  "model": "google/gemini-3.1-pro-preview",
+  "plugin": [
+    "opencode-antigravity-auth@latest"
+  ],
   "autoupdate": true,
 }
