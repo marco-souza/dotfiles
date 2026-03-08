@@ -1,112 +1,103 @@
-# Dotfiles for Linux & macOS Setup
+# Dotfiles
 
-## Overview
+Dotfiles and post-installation scripts for Manjaro Linux and macOS. Uses [GNU Stow](https://www.gnu.org/software/stow/) to manage configuration files as symlinks and automates system setup, dependency installation, and dotfile linking.
 
-This repository contains a collection of dotfiles and scripts to set up and configure both Manjaro Linux and macOS systems. It automates the installation of essential packages, applies configurations, and sets up development tools to ensure a smooth post-installation experience and maintains consistency across both operating systems.
+## Supported Platforms
 
-## Directory Structure
+- **Manjaro Linux** -- with Hyprland window manager, yay/pamac package management, and AUR support.
+- **macOS** -- with Homebrew and Homebrew Cask for package and application management.
 
-- **`manjaro-post-install.sh`**: Main script to execute post-installation steps on Manjaro Linux.
-- **`macos-post-install.sh`**: Main script to execute post-installation steps on macOS.
-- **`scripts/`**: Contains utility scripts.
-  - **`useful-functions.sh`**: Defines reusable functions for package management and configuration setup. Supports both Linux and macOS.
+## Quick Start
 
-## Features
+```bash
+# Clone the repository
+git clone https://github.com/marco-souza/dotfiles.git
+cd dotfiles
 
-### 1. Post-Install Scripts
+# Run the post-install script for your OS
+./macos-post-install.sh       # macOS
+./manjaro-post-install.sh     # Manjaro Linux
+```
 
-#### Manjaro Linux (`manjaro-post-install.sh`)
-Automates:
-- Installing System Dependencies via `yay`/`pamac`:
-  - Tools like `mise`, `nvim`, `stow`, `tmux`, `zsh`, and others.
-- Configuration Management:
-  - Utilizes GNU Stow to manage and apply dotfiles for `mise`, `zsh`, `tmux`, `ghostty`.
-- Application Installations:
-  - Installs applications like `ghostty`, `localsend`, `brave`, `1password`, `steam-native`, etc.
-- Manual Steps:
-  - Guides the user to configure `1password` and set up SSH and Wakatime credentials.
-- Neovim Configuration:
-  - Sets up `nvim`, including cloning a configuration repository and installing plugins.
+The scripts are interactive and will guide you through each step, including package installation, dotfile linking, shell setup, credential configuration, and Neovim initialization.
 
-#### macOS (`macos-post-install.sh`)
-Automates:
-- Homebrew Installation:
-  - Installs Homebrew if not present.
-- Installing System Dependencies via Homebrew:
-  - Tools like `mise`, `nvim`, `stow`, `tmux`, `zsh`, `fzf`, `bat`, `eza`, and others.
-- Configuration Management:
-  - Utilizes GNU Stow to manage and apply dotfiles for `mise`, `zsh`, `tmux`, `ghostty`, `amp`.
-- System Defaults Configuration:
-  - Configures Finder, Dock, keyboard repeat, and other macOS system settings.
-- Application Installations:
-  - Installs applications via Homebrew Cask: `ghostty`, `1password`, `raycast`, `arc`, `warp`, etc.
-- Neovim Configuration:
-  - Sets up `nvim` with custom configuration repository and plugins.
+To apply a single configuration package without running the full script:
 
-### 2. Utility Functions
+```bash
+source scripts/useful-functions.sh
+stow_config zsh    # or any other package name
+```
 
-Defined in `scripts/useful-functions.sh`:
-- **`detect_os()`**:
-  - Detects the operating system (linux or macos).
-- **`ensure_installed`**:
-  - Checks if a command/tool is installed; if not, installs it via package manager.
-  - Uses `yay`/`pamac` on Linux, `brew` on macOS.
-- **`ensure_cask_installed`**:
-  - Installs GUI applications via Homebrew Cask on macOS.
-- **`mise_ensure_installed`**:
-  - Similar function, but uses `mise` for installation.
-- **`npm_ensure_installed`**:
-  - Installs packages via `npm` globally.
-- **`stow_config`**:
-  - Applies dotfiles using GNU Stow, targeting the home directory.
-- **`configure_macos_defaults()`**:
-  - Configures macOS system defaults (Finder, Dock, keyboard, etc.).
-- **`setup_nvim()`**:
-  - Clones and initializes Neovim configuration.
-- **`setup_npm_globals()`**:
-  - Installs essential npm packages globally (TypeScript, ESLint, Prettier, LSPs, AI tools).
-- **`setup_wakatime_config()`**:
-  - Sets up Wakatime configuration from 1Password API secret.
+## Repository Structure
 
-## How to Use
+```
+dotfiles/
+  macos-post-install.sh          # macOS setup script
+  manjaro-post-install.sh        # Manjaro Linux setup script
+  scripts/
+    useful-functions.sh          # Shared utility functions
+  stow/                          # Configuration packages (symlinked to $HOME)
+    amp/                         # Amp AI tool settings
+    flameshot/                   # Screenshot tool config (Linux)
+    gemini/                      # Gemini CLI settings
+    ghostty/                     # Ghostty terminal emulator config
+    grim/                        # Grim screenshot tool config (Linux)
+    hyprland/                    # Hyprland WM, Waybar, HyprLock, etc. (Linux)
+    mise/                        # mise version manager config
+    nvim/                        # Neovim (placeholder; config cloned separately)
+    opencode/                    # OpenCode AI tool config
+    tmux/                        # tmux terminal multiplexer config
+    waybar/                      # Waybar (placeholder; included in hyprland)
+    zed/                         # Zed editor settings
+    zsh/                         # Zsh shell config (.zshrc, aliases, utils)
+```
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/marco-souza/dotfiles.git
-   cd dotfiles
-   ```
+## Stow Packages
 
-2. Run the appropriate post-install script for your OS:
+Each directory under `stow/` is a package that can be applied independently. GNU Stow creates symlinks from the package into your home directory.
 
-   **For Manjaro Linux:**
-   ```bash
-   ./manjaro-post-install.sh
-   ```
+| Package     | Platform | Description                                                          |
+| ----------- | -------- | -------------------------------------------------------------------- |
+| `zsh`       | Both     | Shell configuration: `.zshrc`, aliases, utilities, Oh My Zsh setup   |
+| `tmux`      | Both     | Terminal multiplexer: vi mode, window navigation, auto-rename        |
+| `ghostty`   | Both     | Terminal emulator: Rose Pine theme, 70% opacity, Zsh integration     |
+| `mise`      | Both     | Version manager: Go, Node, Python, Rust, Bun, Deno, Elixir, and more |
+| `amp`       | Both     | Sourcegraph Amp AI tool: thinking mode, MCP server integration       |
+| `zed`       | Both     | Zed editor: vim mode, Gruvbox theme, agent profiles, MCP tools       |
+| `gemini`    | Both     | Google Gemini CLI: vim mode, OAuth auth, session retention           |
+| `opencode`  | Both     | OpenCode AI: Claude/Gemini models, Antigravity integration           |
+| `hyprland`  | Linux    | Hyprland window manager, Waybar, HyprLock, HyprIdle, bindings        |
+| `grim`      | Linux    | Screenshot tool configuration                                        |
+| `flameshot` | Linux    | Screenshot tool with Wayland/Grim adapter                            |
 
-   **For macOS:**
-   ```bash
-   ./macos-post-install.sh
-   ```
+## Key Features
 
-3. Follow the prompts to complete manual steps (git config, 1Password setup, etc.).
+- **Cross-platform** -- a single repository with shared utilities that adapt to Linux or macOS.
+- **GNU Stow** -- clean symlink management with an `--adopt` workflow for merging existing configs.
+- **mise** -- polyglot version management for Go, Node.js, Python, Rust, Bun, Deno, Elixir, Gleam, Zig, and more.
+- **Oh My Zsh** -- pre-configured with the "bureau" theme, autosuggestions, and syntax highlighting.
+- **AI tooling** -- configurations for Amp, Gemini CLI, OpenCode, and GitHub Copilot.
+- **Hyprland desktop** (Linux) -- full tiling WM setup with Waybar, HyprLock, HyprIdle, and media keys.
+- **1Password integration** -- SSH key management and Wakatime credential retrieval via the `op` CLI.
+- **Docker MCP servers** -- Playwright, Context7, Obsidian, Fetch, and Time servers enabled by default.
 
 ## Customization
 
-- Update `manjaro-post-install.sh` or `macos-post-install.sh` to include additional applications or configurations as needed.
-- Add your dotfiles into the respective folders under `stow/` and use `stow_config` to apply them.
-- Modify `configure_macos_defaults()` in `scripts/useful-functions.sh` to customize macOS system settings.
-- Extend `ensure_installed()` to add support for additional package managers if needed.
+- **Add aliases** -- edit `stow/zsh/.aliases` and re-run `stow_config zsh`.
+- **Add a new stow package** -- create a directory under `stow/` mirroring the home directory structure, then run `stow_config <name>`.
+- **Change language runtimes** -- edit `stow/mise/mise.toml` to add, remove, or pin tool versions.
+- **Adjust macOS defaults** -- modify the `configure_macos_defaults` function in `scripts/useful-functions.sh`.
+- **Change Hyprland bindings** -- edit `stow/hyprland/.config/hypr/bindings.conf`.
+- **Add packages to the install scripts** -- add `ensure_installed <package>` or `ensure_cask_installed <cmd> <cask>` calls to the appropriate post-install script.
 
-## OS-Specific Notes
+## Documentation
 
-### macOS
-- Homebrew is automatically installed if not present.
-- System defaults are applied during setup (Finder, Dock, keyboard settings).
-- Additional utilities installed: `fzf`, `bat`, `eza` for enhanced terminal experience.
-- Applications installed via Cask: `raycast`, `arc`, `warp`, `obsidian`.
+Detailed documentation is available in the `docs/` directory:
 
-### Manjaro Linux
-- Uses `yay` as the default AUR helper (falls back to `pamac` if unavailable).
-- Includes support for gaming tools (`lutris`, `steam-native`).
-- Configures DisplayLink support via `evdi` module for multi-display setups.
+- **[Getting Started](docs/getting-started.md)** -- prerequisites, installation walkthrough, and basic usage.
+- **[Configuration](docs/configuration.md)** -- detailed description of each stow package and customization guide.
+- **[Functions Reference](docs/functions-reference.md)** -- reference for all utility functions in `scripts/useful-functions.sh`.
 
+## License
+
+This is a personal dotfiles repository. Use and adapt freely.
