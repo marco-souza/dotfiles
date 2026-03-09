@@ -234,29 +234,66 @@ function setup_omz() {
 function setup_fingerprint() {
   echo "[fingerprint] Checking for fingerprint reader..."
 
-  # Check if fingerprint reader is available
-  if ! lsusb | grep -q "27c6"; then
-    echo "[fingerprint] No Goodix fingerprint reader detected"
+  # Check if fprintd is installed
+  if ! command -v fprintd-list &>/dev/null; then
+    echo "[fingerprint] fprintd not installed, skipping setup"
     return
   fi
 
-  echo "[fingerprint] Goodix fingerprint reader detected"
   echo "[fingerprint] Running fprintd-list to test reader..."
-  fprintd-list
+  if ! fprintd-list; then
+    echo "[fingerprint] No fingerprint reader detected"
+    return
+  fi
 
   echo ""
-  echo "[fingerprint] You can now enroll your fingerprint by:"
+  echo "[fingerprint] Configuring PAM for fingerprint authentication..."
   echo ""
-  echo "  Option 1: Using KDE System Settings"
-  echo "    - Search for 'Users' in Activities"
-  echo "    - Click 'Fingerprint Login' and follow prompts"
+
+  # Configure /etc/pam.d/sudo
+  echo "[fingerprint] Setting up /etc/pam.d/sudo"
+  sudo bash -c 'cat > /etc/pam.d/sudo << EOF
+#%PAM-1.0
+auth sufficient pam_fprintd.so
+auth sufficient pam_unix.so try_first_pass likeauth nullok
+auth required pam_deny.so
+account         include         system-auth
+session         include         system-auth
+EOF'
+
+  # Configure /etc/pam.d/system-login for system login
+  echo "[fingerprint] Setting up /etc/pam.d/system-login"
+
+  # Backup original file
+  if [ ! -f /etc/pam.d/system-login.bkp ]; then
+    sudo cp /etc/pam.d/system-login /etc/pam.d/system-login.bkp
+    echo "[fingerprint] Backed up original to /etc/pam.d/system-login.bkp"
+  fi
+
+  # Check if pam_fprintd.so is already in the file
+  if ! sudo grep -q "pam_fprintd.so" /etc/pam.d/system-login; then
+    sudo sed -i '1i auth sufficient pam_fprintd.so' /etc/pam.d/system-login
+    echo "[fingerprint] Added pam_fprintd.so to /etc/pam.d/system-login"
+  else
+    echo "[fingerprint] /etc/pam.d/system-login already configured"
+  fi
+
   echo ""
-  echo "  Option 2: Using command line"
-  echo "    - Run: fprintd-enroll"
-  echo "    - Scan your finger 10+ times when prompted"
+  echo "[fingerprint] Enroll your fingerprint?"
+  echo "  Press Enter to enroll, or 'skip' to skip for now"
+  read -r enroll_choice
+
+  if [ "$enroll_choice" != "skip" ]; then
+    fprintd-enroll
+    echo "[fingerprint] Fingerprint enrollment complete!"
+  fi
+
   echo ""
-  echo "  After enrollment, fingerprint will work for:"
-  echo "    - Screen unlock (via KDE)"
-  echo "    - sudo commands (with manual PAM configuration)"
+  echo "[fingerprint] Setup complete. Fingerprint will now work for:"
+  echo "    - sudo commands"
+  echo "    - System login"
+  echo ""
+  echo "[fingerprint] If you need to recover PAM settings:"
+  echo "    - sudo cp /etc/pam.d/system-login.bkp /etc/pam.d/system-login"
   echo ""
 }
