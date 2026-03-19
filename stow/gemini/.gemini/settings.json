@@ -8,7 +8,9 @@
     "vimMode": true,
     "previewFeatures": true,
     "sessionRetention": {
-      "enabled": true
+      "enabled": true,
+      "warningAcknowledged": true,
+      "maxAge": "30d"
     },
     "enablePromptCompletion": true
   },
