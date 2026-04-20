@@ -2,7 +2,7 @@
 
 # Setup environment variables
 export EDITOR="nvim"
-export BROWSER="zen-twilight"
+export BROWSER="brave"
 
 # Enchance PATH discovery
 path_list=(

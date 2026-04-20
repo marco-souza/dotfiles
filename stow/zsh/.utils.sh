@@ -10,17 +10,19 @@ ak() { kill -9 $(tid $1) }
 
 # Workon (tmux)
 workon() {
-  if [ ! -d $1 ]; then 
+  destination=$1
+
+  if [ ! -d $destination ]; then 
     # Do not exists, set up a new project
-    mkdir $1;
+    mkdir $destination;
 
     # set up git
-    cd  $1 && git init && cd -;
+    cd  $destination && git init && cd -;
   fi
 
-  mise trust $1
+  mise trust $destination
 
-  tmux neww -c $pwd
+  tmux neww -c $destination
 }
 
 # Git
