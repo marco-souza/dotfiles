@@ -16,6 +16,7 @@ ensure_installed stow
 ensure_installed tmux
 ensure_installed zsh
 ensure_installed gh
+ensure_installed fd
 ensure_installed fzf
 ensure_installed bat
 ensure_installed eza
