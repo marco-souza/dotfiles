@@ -1,17 +1,1 @@
-{
-  "$schema": "https://opencode.ai/config.json",
-  "model": "opencode-go/minimax-m2.7",
-  "autoupdate": true,
-  "mcp": {
-    "docker_mcp_server": {
-      "type": "local",
-      "enabled": true,
-      "command": [
-        "docker",
-        "mcp",
-        "gateway",
-        "run"
-      ]
-    }
-  }
-}
+{"$schema":"https://opencode.ai/config.json","model":"opencode-go/minimax-m2.7","autoupdate":true,"mcp":{"docker_mcp_server":{"type":"local","enabled":true,"command":["docker","mcp","gateway","run"]},"MCP_DOCKER":{"type":"local","command":["docker","mcp","gateway","run","--profile","default"],"enabled":true}}}
