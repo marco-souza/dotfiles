@@ -2,6 +2,7 @@
 elixir = "latest"
 erlang = "latest"
 node = "lts"
+odin = "latest"
 usage = "latest"
 watchexec = "latest"
 
