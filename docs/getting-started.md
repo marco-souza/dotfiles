@@ -1,6 +1,8 @@
 # Getting Started
 
-This guide walks you through setting up your system using the dotfiles repository. It covers prerequisites, installation steps for both macOS and Manjaro Linux, and basic usage of the configuration management system.
+This guide walks you through setting up your system using the dotfiles
+repository. It covers prerequisites, installation steps for both macOS and
+Manjaro Linux, and basic usage of the configuration management system.
 
 ## Prerequisites
 
@@ -14,17 +16,22 @@ This guide walks you through setting up your system using the dotfiles repositor
 
 - **macOS 12 (Monterey) or later** is recommended.
 - **Xcode Command Line Tools** -- install with `xcode-select --install` if not already present.
-- **Homebrew** -- the macOS post-install script will install it automatically if missing, but you can install it manually from [brew.sh](https://brew.sh) beforehand.
+- **Homebrew** -- the macOS post-install script will install it automatically if
+  missing, but you can install it manually from [brew.sh](https://brew.sh)
+  beforehand.
 
 ### Manjaro Linux
 
 - **Manjaro Linux** with an up-to-date base installation.
-- **yay** (AUR helper) -- the primary package manager used by the scripts. If unavailable, the scripts fall back to `pamac`.
+- **yay** (AUR helper) -- the primary package manager used by the scripts. If
+  unavailable, the scripts fall back to `pamac`.
 - **sudo** access -- many packages require elevated privileges to install.
 
 ### Optional (Both Platforms)
 
-- **1Password and 1Password CLI (`op`)** -- used for retrieving Wakatime API keys and SSH credential management. If you do not use 1Password, you can skip or manually handle those steps during installation.
+- **1Password and 1Password CLI (`op`)** -- used for retrieving Wakatime API keys
+  and SSH credential management. If you do not use 1Password, you can skip or
+  manually handle those steps during installation.
 - **An SSH key** -- for cloning the Neovim configuration repository (which uses a `git@github.com:` URL).
 
 ## Installation
@@ -49,8 +56,10 @@ Choose the script that matches your operating system.
 This script will:
 
 1. Install Homebrew (if not present).
-2. Install system dependencies via `brew`: `mise`, `nvim`, `stow`, `tmux`, `zsh`, `gh`, `fzf`, `bat`, `eza`, `ripgrep`, `mole`.
-3. Apply dotfile configurations using GNU Stow for: `mise`, `zsh`, `tmux`, `ghostty`, `amp`, `zed`, `gemini`, `opencode`.
+2. Install system dependencies via `brew`: `mise`, `nvim`, `stow`, `tmux`, `zsh`,
+   `gh`, `fzf`, `bat`, `eza`, `ripgrep`, `mole`.
+3. Apply dotfile configurations using GNU Stow for: `mise`, `zsh`, `tmux`,
+   `ghostty`, `amp`, `zed`, `gemini`, `opencode`.
 4. Set Zsh as the default shell and install Oh My Zsh.
 5. Run `mise install` to install language runtimes and developer tools.
 6. Install GUI applications via Homebrew Cask: Ghostty, LocalSend, Brave, 1Password, Obsidian.
@@ -70,12 +79,16 @@ This script will:
 This script will:
 
 1. Update the system via `yay` or `pamac`.
-2. Install system dependencies: `yay`, `fakeroot`, `pkg-config`, `mise`, `nvim`, `stow`, `tmux`, `zsh`, `yt-dlp`, `fprintd`, `libfprint`, `ripgrep`, `github-cli`, `inotify-tools`, `blueman`, `flameshot`, `wdisplays`.
+2. Install system dependencies: `yay`, `fakeroot`, `pkg-config`, `mise`, `nvim`,
+   `stow`, `tmux`, `zsh`, `yt-dlp`, `fprintd`, `libfprint`, `ripgrep`,
+   `github-cli`, `inotify-tools`, `blueman`, `flameshot`, `wdisplays`.
 3. Install and enable Tailscale VPN.
 4. Install and configure Docker and Docker Compose.
 5. Enable MCP (Model Context Protocol) servers via `docker-mcp`: Playwright, Context7, Obsidian, Fetch, Time.
 6. Install Hyprland and the full Hypr ecosystem (Waybar, HyprLock, HyprIdle, etc.).
-7. Apply dotfile configurations using GNU Stow for: `mise`, `zsh`, `tmux`, `ghostty`, `amp`, `zed`, `gemini`, `hyprland`, `grim`, `flameshot`, `opencode`.
+7. Apply dotfile configurations using GNU Stow for: `mise`, `zsh`, `tmux`,
+   `ghostty`, `amp`, `zed`, `gemini`, `hyprland`, `grim`, `flameshot`,
+   `opencode`.
 8. Set Zsh as the default shell and install Oh My Zsh.
 9. Run `mise install` to install language runtimes and developer tools.
 10. Install GUI applications: Steam, Ghostty, Zen Twilight browser, LocalSend, Brave, 1Password.
@@ -91,7 +104,8 @@ This script will:
 
 Both scripts are interactive. You will be prompted to:
 
-- **Reset stow configs** -- optionally run `git reset --hard` to discard local changes to stow-managed files before they are re-linked.
+- **Reset stow configs** -- optionally run `git reset --hard` to discard local
+  changes to stow-managed files before they are re-linked.
 - **Configure 1Password** -- sign in and set up SSH integration.
 - **Set up Wakatime** -- credentials are pulled from 1Password. If a config already exists, you can choose to reset it.
 - **Configure Git** -- enter your name and email for `git config --global`, or edit existing values.
@@ -99,20 +113,24 @@ Both scripts are interactive. You will be prompted to:
 
 ### Step 4: Restart (Manjaro Linux)
 
-After the Manjaro post-install script completes, a system restart is recommended to ensure all services (Docker, Tailscale, DisplayLink, fingerprint) are fully active.
+After the Manjaro post-install script completes, a system restart is recommended
+to ensure all services (Docker, Tailscale, DisplayLink, fingerprint) are fully
+active.
 
 ## Basic Usage
 
 ### Applying a Single Stow Package
 
-You do not need to re-run the entire post-install script to update or apply a single configuration. Source the utility functions and use `stow_config`:
+You do not need to re-run the entire post-install script to update or apply a
+single configuration. Source the utility functions and use `stow_config`:
 
 ```bash
 source scripts/useful-functions.sh
 stow_config zsh
 ```
 
-This creates symlinks from the stow package directory into your home directory. For example, `stow_config zsh` links `stow/zsh/.zshrc` to `~/.zshrc`.
+This creates symlinks from the stow package directory into your home directory.
+For example, `stow_config zsh` links `stow/zsh/.zshrc` to `~/.zshrc`.
 
 ### Installing a Package
 
@@ -138,11 +156,16 @@ Returns `linux`, `macos`, or `unknown`.
 
 ### Stow Conflicts
 
-If `stow_config` reports conflicts, it means a file already exists at the target location and is not a symlink managed by Stow. The scripts use the `--adopt` flag, which moves existing files into the stow package directory and creates the symlink. After adoption, you can optionally run `git reset --hard` to restore the repository's version of the file.
+If `stow_config` reports conflicts, it means a file already exists at the target
+location and is not a symlink managed by Stow. The scripts use the `--adopt`
+flag, which moves existing files into the stow package directory and creates the
+symlink. After adoption, you can optionally run `git reset --hard` to restore
+the repository's version of the file.
 
 ### Missing `yay` on Manjaro
 
-If `yay` is not available, the scripts fall back to `pamac`. However, some AUR packages may not be installable via `pamac`. Install `yay` first:
+If `yay` is not available, the scripts fall back to `pamac`. However, some AUR
+packages may not be installable via `pamac`. Install `yay` first:
 
 ```bash
 sudo pacman -S yay
@@ -170,7 +193,9 @@ api_key = YOUR_API_KEY_HERE
 
 ### Neovim Clone Fails
 
-The Neovim configuration is cloned via SSH (`git@github.com:marco-souza/nvim.git`). Make sure your SSH key is added to your GitHub account and the SSH agent is running.
+The Neovim configuration is cloned via SSH
+(`git@github.com:marco-souza/nvim.git`). Make sure your SSH key is added to
+your GitHub account and the SSH agent is running.
 
 ## Next Steps
 

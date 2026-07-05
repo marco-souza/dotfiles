@@ -1,6 +1,6 @@
 {
   "defaultProvider": "opencode",
-  "defaultModel": "mimo-v2.5-free",
+  "defaultModel": "deepseek-v4-flash-free",
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "enabledModels": [
@@ -20,7 +20,6 @@
   ],
   "theme": "dark",
   "externalEditor": "neovim",
-  "quietStartup": true,
   "retry": {
     "enabled": true,
     "maxRetries": 3,
@@ -44,5 +43,6 @@
   },
   "extensions": [
     "/Users/marco/w/marco-souza/pi-browser-bridge/pi-extension/src/index.ts"
-  ]
+  ],
+  "lastChangelogVersion": "0.80.2"
 }

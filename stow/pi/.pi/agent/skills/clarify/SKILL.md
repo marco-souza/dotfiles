@@ -23,8 +23,15 @@ Before jumping into implementation, make sure the requirements are crystal clear
 3. **Suggest options** — propose 2-3 approaches when there's ambiguity
 4. **Wait for the user's response** before proceeding
 
+## Collaboration with Other Skills
+
+- **research**: Use `/skill:research` to explore the codebase and gather context before asking questions. Research reduces the number of clarifications needed.
+- **grill-me**: For deep requirements discovery, use `/skill:grill-me` to systematically uncover all requirements
+- **brainstorm**: For exploring multiple solution approaches, use `/skill:brainstorm`
+
 ## Remember
 
 - It's faster to ask now than to redo work later
 - Reading files first reduces ambiguity — always check before assuming
 - "When in doubt, ask" — this skill exists because past me forgot this too often
+- **Research first, ask second**: Use `/skill:research` to gather context, then ask targeted questions

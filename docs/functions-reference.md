@@ -1,6 +1,8 @@
 # Functions Reference
 
-This document provides a complete reference for all functions defined in `scripts/useful-functions.sh`. These functions are used by both post-install scripts and can be sourced directly for manual use.
+This document provides a complete reference for all functions defined in
+`scripts/useful-functions.sh`. These functions are used by both post-install
+scripts and can be sourced directly for manual use.
 
 ## Loading the Functions
 
@@ -10,7 +12,8 @@ Before using any function, source the file:
 source scripts/useful-functions.sh
 ```
 
-Note: sourcing this file also runs a system update. On Linux, it runs `yay -Syu` or `pamac update`. On macOS, it runs `brew update && brew upgrade`.
+Note: sourcing this file also runs a system update. On Linux, it runs
+`yay -Syu` or `pamac update`. On macOS, it runs `brew update && brew upgrade`.
 
 ---
 
@@ -47,14 +50,15 @@ Installs a package using the system's package manager if it is not already insta
 
 **Parameters:**
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `cmd` | Yes | The command name to check for (and the default package name) |
-| `install_cmd` | No | The package name to install, if different from `cmd` |
+| Parameter     | Required | Description                                                  |
+| ------------- | -------- | ------------------------------------------------------------ |
+| `cmd`         | Yes      | The command name to check for (and the default package name) |
+| `install_cmd` | No       | The package name to install, if different from `cmd`         |
 
 **Behavior by OS:**
 
-- **Linux:** Checks if the package is listed in `yay -Q`. If not found, installs via `yay -Syu --noconfirm` or falls back to `sudo pamac install --no-confirm`.
+- **Linux:** Checks if the package is listed in `yay -Q`. If not found, installs
+  via `yay -Syu --noconfirm` or falls back to `sudo pamac install --no-confirm`.
 - **macOS:** Checks if the package is listed in `brew list --versions`. If not found, installs via `brew install`.
 
 **Example:**
@@ -75,14 +79,15 @@ Installs a macOS GUI application via Homebrew Cask if the command is not already
 
 **Parameters:**
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `cmd` | Yes | The command name to check for |
-| `install_cmd` | No | The Cask formula name, if different from `cmd` |
+| Parameter     | Required | Description                                    |
+| ------------- | -------- | ---------------------------------------------- |
+| `cmd`         | Yes      | The command name to check for                  |
+| `install_cmd` | No       | The Cask formula name, if different from `cmd` |
 
 **Behavior:** Checks if the command exists via `command -v`. If not found, installs via `brew install --cask`.
 
-**Platform:** macOS only. On Linux, this function is not used; GUI applications are installed via `ensure_installed` with AUR packages.
+**Platform:** macOS only. On Linux, this function is not used; GUI applications
+are installed via `ensure_installed` with AUR packages.
 
 **Example:**
 
@@ -100,10 +105,10 @@ Installs a tool via `mise` (version manager) if the command is not already avail
 
 **Parameters:**
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `cmd` | Yes | The command name to check for |
-| `install_cmd` | No | The mise tool name, if different from `cmd` |
+| Parameter     | Required | Description                                 |
+| ------------- | -------- | ------------------------------------------- |
+| `cmd`         | Yes      | The command name to check for               |
+| `install_cmd` | No       | The mise tool name, if different from `cmd` |
 
 **Behavior:** Checks if the command exists via `command -v`. If not found, installs globally using `mise use -g`.
 
@@ -122,10 +127,10 @@ Installs a package globally via npm if the command is not already available.
 
 **Parameters:**
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `cmd` | Yes | The command name to check for |
-| `install_cmd` | No | The npm package name, if different from `cmd` |
+| Parameter     | Required | Description                                   |
+| ------------- | -------- | --------------------------------------------- |
+| `cmd`         | Yes      | The command name to check for                 |
+| `install_cmd` | No       | The npm package name, if different from `cmd` |
 
 **Behavior:** Checks if the command exists via `command -v`. If not found, installs via `npm install -g`.
 
@@ -147,10 +152,10 @@ Applies a dotfile package using GNU Stow, creating symlinks from the package dir
 
 **Parameters:**
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `package` | Yes | The name of the stow package directory (under `stow/`) |
-| `flags` | No | Additional flags to pass to the `stow` command |
+| Parameter | Required | Description                                            |
+| --------- | -------- | ------------------------------------------------------ |
+| `package` | Yes      | The name of the stow package directory (under `stow/`) |
+| `flags`   | No       | Additional flags to pass to the `stow` command         |
 
 **Behavior:**
 
@@ -158,7 +163,10 @@ Applies a dotfile package using GNU Stow, creating symlinks from the package dir
 2. Runs `stow <flags> --target "$HOME" <package> --adopt`.
 3. Changes back to the parent directory.
 
-The `--adopt` flag causes Stow to move any existing files at the target location into the stow directory and replace them with symlinks. This means local customizations are preserved in the repository, and you can use `git diff` to review them.
+The `--adopt` flag causes Stow to move any existing files at the target location
+into the stow directory and replace them with symlinks. This means local
+customizations are preserved in the repository, and you can use `git diff` to
+review them.
 
 **Example:**
 
@@ -197,7 +205,8 @@ Installs or resets Oh My Zsh.
 **Behavior:**
 
 - If `~/.oh-my-zsh` does not exist, downloads and installs Oh My Zsh from the official repository.
-- If it already exists, prompts the user whether to reset it. If confirmed, removes the existing installation and reinstalls.
+- If it already exists, prompts the user whether to reset it. If confirmed,
+  removes the existing installation and reinstalls.
 
 **Example:**
 
@@ -293,9 +302,9 @@ Sets up the EVDI (Extensible Virtual Display Interface) kernel module for Displa
 
 **Parameters:**
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `$1` | No | EVDI version (defaults to `1.14.11`) |
+| Parameter | Required | Description                          |
+| --------- | -------- | ------------------------------------ |
+| `$1`      | No       | EVDI version (defaults to `1.14.11`) |
 
 **Platform:** Linux only.
 
@@ -377,7 +386,8 @@ configure_macos_defaults
 
 ## Inline System Update
 
-When `scripts/useful-functions.sh` is sourced, it automatically runs a system update at the module level (outside any function):
+When `scripts/useful-functions.sh` is sourced, it automatically runs a system
+update at the module level (outside any function):
 
 - **Linux:** `sudo yay -Syu --noconfirm` (or `sudo pamac update --no-confirm` if `yay` is not available).
 - **macOS:** `brew update && brew upgrade`.

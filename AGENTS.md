@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-Dotfiles and post-installation scripts for Manjaro Linux and macOS. Uses GNU Stow to manage configurations. Automates system setup, dependency installation, and dotfile linking.
+Dotfiles and post-installation scripts for Manjaro Linux and macOS.
+Uses GNU Stow to manage configurations. Automates system setup,
+dependency installation, and dotfile linking.
 
 ## Structure
 

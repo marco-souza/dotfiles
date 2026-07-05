@@ -1,6 +1,9 @@
 # Dotfiles
 
-Dotfiles and post-installation scripts for Manjaro Linux and macOS. Uses [GNU Stow](https://www.gnu.org/software/stow/) to manage configuration files as symlinks and automates system setup, dependency installation, and dotfile linking.
+Dotfiles and post-installation scripts for Manjaro Linux and macOS. Uses
+[GNU Stow](https://www.gnu.org/software/stow/) to manage configuration files as
+symlinks and automates system setup, dependency installation, and dotfile
+linking.
 
 ## Supported Platforms
 
@@ -19,7 +22,9 @@ cd dotfiles
 ./manjaro-post-install.sh     # Manjaro Linux
 ```
 
-The scripts are interactive and will guide you through each step, including package installation, dotfile linking, shell setup, credential configuration, and Neovim initialization.
+The scripts are interactive and will guide you through each step, including
+package installation, dotfile linking, shell setup, credential configuration,
+and Neovim initialization.
 
 To apply a single configuration package without running the full script:
 
@@ -30,7 +35,7 @@ stow_config zsh    # or any other package name
 
 ## Repository Structure
 
-```
+```text
 dotfiles/
   macos-post-install.sh          # macOS setup script
   manjaro-post-install.sh        # Manjaro Linux setup script
@@ -54,7 +59,8 @@ dotfiles/
 
 ## Stow Packages
 
-Each directory under `stow/` is a package that can be applied independently. GNU Stow creates symlinks from the package into your home directory.
+Each directory under `stow/` is a package that can be applied independently.
+GNU Stow creates symlinks from the package into your home directory.
 
 | Package     | Platform | Description                                                          |
 | ----------- | -------- | -------------------------------------------------------------------- |
@@ -84,11 +90,14 @@ Each directory under `stow/` is a package that can be applied independently. GNU
 ## Customization
 
 - **Add aliases** -- edit `stow/zsh/.aliases` and re-run `stow_config zsh`.
-- **Add a new stow package** -- create a directory under `stow/` mirroring the home directory structure, then run `stow_config <name>`.
+- **Add a new stow package** -- create a directory under `stow/` mirroring the
+  home directory structure, then run `stow_config <name>`.
 - **Change language runtimes** -- edit `stow/mise/mise.toml` to add, remove, or pin tool versions.
 - **Adjust macOS defaults** -- modify the `configure_macos_defaults` function in `scripts/useful-functions.sh`.
 - **Change Hyprland bindings** -- edit `stow/hyprland/.config/hypr/bindings.conf`.
-- **Add packages to the install scripts** -- add `ensure_installed <package>` or `ensure_cask_installed <cmd> <cask>` calls to the appropriate post-install script.
+- **Add packages to the install scripts** -- add `ensure_installed <package>` or
+  `ensure_cask_installed <cmd> <cask>` calls to the appropriate post-install
+  script.
 
 ## Documentation
 
@@ -96,7 +105,8 @@ Detailed documentation is available in the `docs/` directory:
 
 - **[Getting Started](docs/getting-started.md)** -- prerequisites, installation walkthrough, and basic usage.
 - **[Configuration](docs/configuration.md)** -- detailed description of each stow package and customization guide.
-- **[Functions Reference](docs/functions-reference.md)** -- reference for all utility functions in `scripts/useful-functions.sh`.
+- **[Functions Reference](docs/functions-reference.md)** -- reference for all
+  utility functions in `scripts/useful-functions.sh`.
 
 ## License
 

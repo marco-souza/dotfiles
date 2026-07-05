@@ -53,9 +53,11 @@ cat .pi/settings.json 2>/dev/null || echo "No project settings"
 2. Make the requested change
 3. Validate JSON syntax
 4. If working in the dotfiles repo, re-apply with:
+
    ```bash
    source scripts/useful-functions.sh && stow_config pi
    ```
+
 5. Inform the user the change is active (restart Pi if needed)
 
 ## Creating a project-level override
