@@ -11,3 +11,6 @@ m = "mise"
 
 [settings]
 experimental = true
+
+[settings.node]
+gpg_verify = false
