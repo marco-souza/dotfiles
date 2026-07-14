@@ -1,22 +1,19 @@
 {
-  "defaultProvider": "opencode",
-  "defaultModel": "deepseek-v4-flash-free",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "kimi-k2.7-code",
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "enabledModels": [
     "opencode-go/deepseek-v4-flash",
-    "opencode-go/deepseek-v4-pro",
-    "opencode-go/kimi-k2.6",
     "opencode/mimo-v2.5-free",
     "opencode/deepseek-v4-flash-free",
     "opencode-go/kimi-k2.7-code",
     "opencode-go/qwen3.7-max",
     "opencode-go/qwen3.7-plus",
-    "opencode-go/minimax-m2.7",
     "opencode-go/minimax-m3",
     "opencode-go/glm-5.2",
-    "ollama_local/qwen3.5:9b",
-    "ollama_homelab/qwen3.5:9b"
+    "ollama_homelab/qwen3.5:9b",
+    "opencode/big-pickle"
   ],
   "theme": "dark",
   "externalEditor": "neovim",
@@ -44,5 +41,5 @@
   "extensions": [
     "/Users/marco/w/marco-souza/pi-browser-bridge/pi-extension/src/index.ts"
   ],
-  "lastChangelogVersion": "0.80.2"
+  "lastChangelogVersion": "0.80.6"
 }

@@ -14,7 +14,11 @@
     "status": "bun src/cli.ts status",
     "prompts": "bun src/cli.ts prompts",
     "spawn": "bun src/cli.ts spawn",
-    "start": "bun src/cli.ts"
+    "start": "bun src/cli.ts",
+    "test": "bun test src/__tests__/",
+    "test:unit": "bun test src/__tests__/tasks-lib.test.ts src/__tests__/cli-utils.test.ts",
+    "test:integration": "bun test src/__tests__/validate.test.ts src/__tests__/status.test.ts src/__tests__/prompts.test.ts src/__tests__/spawn.test.ts",
+    "test:coverage": "bun test --coverage src/__tests__/"
   },
   "devDependencies": {
     "@types/bun": "latest"
