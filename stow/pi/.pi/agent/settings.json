@@ -1,6 +1,6 @@
 {
   "defaultProvider": "opencode-go",
-  "defaultModel": "kimi-k2.7-code",
+  "defaultModel": "qwen3.7-plus",
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "enabledModels": [
@@ -16,7 +16,7 @@
     "opencode/big-pickle"
   ],
   "theme": "dark",
-  "externalEditor": "neovim",
+  "externalEditor": "nvim",
   "retry": {
     "enabled": true,
     "maxRetries": 3,
