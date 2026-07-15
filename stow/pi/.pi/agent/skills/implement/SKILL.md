@@ -5,7 +5,7 @@ description: >
   Use when: the task is simple (single file, config change, straightforward feature),
   or when there is no tasks.json and the user wants to start coding immediately.
   Do NOT use when: there is a tasks.json (use implement-tasks instead),
-  or when requirements are unclear (use grill-me first).
+  or when requirements are unclear (use grill-with-docs first).
 ---
 
 # Implement (Direct)
@@ -22,7 +22,7 @@ Implement code directly without orchestrator subagents. For simple tasks that do
 ## When NOT to Use
 
 - Complex multi-file features → Use `implement-tasks` with `tasks.json`
-- Requirements unclear → Use `grill-me` first
+- Requirements unclear → Use `grill-with-docs` first
 - Multiple interdependent tasks → Use `prd-to-tasks` then `implement-tasks`
 
 ## Workflow
@@ -104,7 +104,7 @@ Agent:
 
 ## Collaboration
 
-- **grill-me** → Requirements (before this skill)
+- **grill-with-docs** → Requirements (before this skill)
 - **prd-to-tasks** → Planning (for complex projects)
 - **implement-tasks** → Orchestration (for complex projects)
 - **research** → Context gathering (optional, before coding)

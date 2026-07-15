@@ -225,7 +225,7 @@ _Can you explain this simply?_
 
 ## Collaboration with Other Skills
 
-- **grill-me**: After researching, feed findings into requirements discovery
+- **grill-with-docs**: After researching, feed findings into requirements discovery
 - **brainstorm**: Use research as input for ideation sessions
 - **clarify**: Research helps inform which questions to ask
 

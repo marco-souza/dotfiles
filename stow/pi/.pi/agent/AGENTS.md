@@ -12,7 +12,7 @@ All skills follow the **Feynman Technique**: if you can't explain it simply, you
 | --------------------- | -------------------------- | --------------------------------------------- | --------------- |
 | **research**          | `/skill:research`          | Explore codebases, search web, gather context | `RESEARCH.md`   |
 | **brainstorm**        | `/skill:brainstorm`        | Generate creative ideas, explore alternatives | `BRAINSTORM.md` |
-| **grill-me**          | `/skill:grill-me`          | Deep requirements discovery via questioning   | `PRD.md`        |
+| **grill-with-docs**   | `/skill:grill-with-docs`   | Relentless interview + docs (CONTEXT.md, ADRs, PRD.md) | `PRD.md` |
 | **clarify**           | `/skill:clarify`           | Quick clarifications on specific points       | Inline answers  |
 | **prd-to-tasks**      | `/skill:prd-to-tasks`      | Break PRD into executable tasks               | `tasks.json`    |
 | **implement**         | `/skill:implement`         | Direct implementation for simple tasks        | Code            |
@@ -28,7 +28,7 @@ All skills follow the **Feynman Technique**: if you can't explain it simply, you
 │           ↓                                                     │
 │ 2. /skill:brainstorm   →  Generate solution ideas               │
 │           ↓                                                     │
-│ 3. /skill:grill-me     →  Deep requirements discovery           │
+│ 3. /skill:grill-with-docs →  Deep requirements discovery + docs │
 │           ↓                                                     │
 │ 4. /skill:clarify      →  Resolve specific questions            │
 │           ↓                                                     │
@@ -60,12 +60,12 @@ All skills follow the **Feynman Technique**: if you can't explain it simply, you
 - Analyzes effort vs impact
 - **Use when**: Exploring new features or solving creative problems
 
-#### `/skill:grill-me`
+#### `/skill:grill-with-docs`
 
-- Uses Feynman Technique to deeply understand requirements
-- Asks "why" and "how" questions to challenge assumptions
-- Generates comprehensive PRD.md
-- **Use when**: Starting a new feature/project with unclear requirements
+- Runs a relentless, one-question-at-a-time interview
+- Captures resolved terms in `CONTEXT.md` and hard decisions as ADRs as it goes
+- Synthesizes the shared understanding into a comprehensive `PRD.md`
+- **Use when**: Starting a new feature/project with unclear requirements or unsettled domain language
 
 #### `/skill:clarify`
 
@@ -109,7 +109,7 @@ All skills follow the **Feynman Technique**: if you can't explain it simply, you
 
 1. **Research first** - Always gather context before asking questions
 2. **Brainstorm before deciding** - Explore multiple approaches
-3. **Grill before building** - Ensure crystal-clear requirements
+3. **Grill with docs before building** - Ensure crystal-clear requirements and a shared paper trail
 4. **Human approves PRD** - Never skip this step
 5. **Tasks before code** - Use `prd-to-tasks` for complex projects
 6. **Delegate implementation** - Use `implement-tasks` to spawn subagents
@@ -141,5 +141,5 @@ All skills generate files at project root for human review:
 | Project Type                                 | Workflow                                                                |
 | -------------------------------------------- | ----------------------------------------------------------------------- |
 | **Simple** (single file, config change)      | research → clarify → implement                                          |
-| **Medium** (new feature, few files)          | research → grill-me → PRD → implement                                   |
-| **Complex** (multi-component, multiple devs) | research → brainstorm → grill-me → PRD → prd-to-tasks → implement-tasks |
+| **Medium** (new feature, few files)          | research → grill-with-docs → PRD → implement                            |
+| **Complex** (multi-component, multiple devs) | research → brainstorm → grill-with-docs → PRD → prd-to-tasks → implement-tasks |

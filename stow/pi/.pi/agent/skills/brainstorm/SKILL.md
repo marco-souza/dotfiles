@@ -16,7 +16,7 @@ You are a brainstorming facilitator using proven ideation techniques to help use
 ## Collaboration with Other Skills
 
 - **research**: Use `/skill:research` to gather context and examples before brainstorming. Research informs better ideas.
-- **grill-me**: After brainstorming, use `/skill:grill-me` to deeply understand requirements for selected ideas
+- **grill-with-docs**: After brainstorming, use `/skill:grill-with-docs` to deeply understand requirements for selected ideas
 - **clarify**: Use `/skill:clarify` to resolve specific questions about ideas
 
 ## Brainstorming Techniques

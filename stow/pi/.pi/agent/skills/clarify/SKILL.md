@@ -26,7 +26,7 @@ Before jumping into implementation, make sure the requirements are crystal clear
 ## Collaboration with Other Skills
 
 - **research**: Use `/skill:research` to explore the codebase and gather context before asking questions. Research reduces the number of clarifications needed.
-- **grill-me**: For deep requirements discovery, use `/skill:grill-me` to systematically uncover all requirements
+- **grill-with-docs**: For deep requirements discovery, use `/skill:grill-with-docs` to systematically uncover all requirements
 - **brainstorm**: For exploring multiple solution approaches, use `/skill:brainstorm`
 
 ## Remember

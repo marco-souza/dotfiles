@@ -18,12 +18,12 @@ Break down a PRD into a `tasks.json` that drives implementation.
 
 ## When NOT to Use
 
-- No PRD exists (use `grill-me` first)
+- No PRD exists (use `grill-with-docs` first)
 - Trivially small task (use `implement` directly)
 
 ## Prerequisites
 
-- A PRD exists (created by `grill-me` or manually)
+- A PRD exists (created by `grill-with-docs` or manually)
 - `task-pipeline` CLI available in `.pi/agent/scripts/task-pipeline/`
 
 ## tasks.json Format

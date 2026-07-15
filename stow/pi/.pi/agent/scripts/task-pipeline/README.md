@@ -544,7 +544,7 @@ The task-pipeline is designed to work with the [pi agent skill system](/Users/ma
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  /skill:grill-me                                                │
+│  /skill:grill-with-docs                                         │
 │  ↓                                                              │
 │  PRD.md (requirements)                                          │
 │  ↓                                                              │

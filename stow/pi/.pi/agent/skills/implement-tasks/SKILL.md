@@ -121,7 +121,7 @@ If a task cannot be completed:
 
 1. **Diagnose** — Is it a code bug, missing info, design flaw?
 2. **If fixable:** Fix and re-verify
-3. **If blocked:** Use `grill-me` to ask the user
+3. **If blocked:** Use `grill-with-docs` to ask the user
 4. **If dependency was wrong:** Fix the dependency first, then retry
 
 ### 7. Report Progress
