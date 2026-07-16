@@ -1,6 +1,6 @@
 {
   "defaultProvider": "opencode-go",
-  "defaultModel": "kimi-k2.7-code",
+  "defaultModel": "glm-5.2",
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "enabledModels": [

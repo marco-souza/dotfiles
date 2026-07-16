@@ -23,7 +23,7 @@ Execute a `tasks.json` plan one task at a time, respecting dependencies.
 
 ## Prerequisites
 
-- `task-pipeline` CLI available in `.pi/agent/scripts/task-pipeline/`
+- `task-pipeline` CLI available at `$HOME/.pi/agent/scripts/task-pipeline/`
 - `tmux` installed
 - `pi` CLI available on PATH
 
@@ -32,7 +32,7 @@ Execute a `tasks.json` plan one task at a time, respecting dependencies.
 ### 1. Validate the Task Graph
 
 ```bash
-bun .pi/agent/scripts/task-pipeline/src/cli.ts validate tasks.json --summary
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" validate tasks.json --summary
 ```
 
 This checks: valid JSON, missing dependencies, circular dependencies, phase
@@ -45,7 +45,7 @@ keys, unique IDs. With `--summary` it also prints phase breakdown and critical p
 Use topological sort to group tasks into parallel waves:
 
 ```bash
-bun .pi/agent/scripts/task-pipeline/src/cli.ts validate tasks.json --waves
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" validate tasks.json --waves
 ```
 
 | Wave | Tasks | Deps |
@@ -57,7 +57,7 @@ bun .pi/agent/scripts/task-pipeline/src/cli.ts validate tasks.json --waves
 ### 3. Generate Prompt Files
 
 ```bash
-bun .pi/agent/scripts/task-pipeline/src/cli.ts prompts tasks.json
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" prompts tasks.json
 ```
 
 This generates `tasks/TASK-XXXX-prompt` files — self-contained prompts that
@@ -70,26 +70,26 @@ task is delegated to an isolated tmux session running `pi`:
 
 ```bash
 # Spawn next ready wave (auto-detects pending tasks)
-bun .pi/agent/scripts/task-pipeline/src/cli.ts spawn
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" spawn
 
 # Spawn specific tasks
-bun .pi/agent/scripts/task-pipeline/src/cli.ts spawn T001 T003
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" spawn T001 T003
 
 # Preview what would spawn
-bun .pi/agent/scripts/task-pipeline/src/cli.ts spawn --dry-run
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" spawn --dry-run
 ```
 
 #### Async Wave-by-Wave Pattern
 
 ```bash
 # 1. Spawn first wave (returns immediately)
-bun .pi/agent/scripts/task-pipeline/src/cli.ts spawn
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" spawn
 
 # 2. Check status — poll until wave completes
-bun .pi/agent/scripts/task-pipeline/src/cli.ts status --compact
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" status --compact
 
 # 3. When current wave is done, spawn the next wave
-bun .pi/agent/scripts/task-pipeline/src/cli.ts spawn
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" spawn
 
 # 4. Repeat steps 2-3 until all tasks are done
 ```
@@ -97,9 +97,9 @@ bun .pi/agent/scripts/task-pipeline/src/cli.ts spawn
 #### Monitoring
 
 ```bash
-bun .pi/agent/scripts/task-pipeline/src/cli.ts status           # full table
-bun .pi/agent/scripts/task-pipeline/src/cli.ts status --compact  # one-liner
-bun .pi/agent/scripts/task-pipeline/src/cli.ts status --pending  # pending only
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" status           # full table
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" status --compact  # one-liner
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" status --pending  # pending only
 
 # Peek at a specific task's live output
 tmux capture-pane -t task-T005 -p | tail -20

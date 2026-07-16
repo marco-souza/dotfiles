@@ -24,7 +24,7 @@ Break down a PRD into a `tasks.json` that drives implementation.
 ## Prerequisites
 
 - A PRD exists (created by `grill-with-docs` or manually)
-- `task-pipeline` CLI available in `.pi/agent/scripts/task-pipeline/`
+- `task-pipeline` CLI available at `$HOME/.pi/agent/scripts/task-pipeline/`
 
 ## tasks.json Format
 
@@ -93,7 +93,7 @@ Break down a PRD into a `tasks.json` that drives implementation.
 5. **Validate** using the task-pipeline CLI:
 
 ```bash
-bun .pi/agent/scripts/task-pipeline/src/cli.ts validate tasks.json --summary
+bun "$HOME/.pi/agent/scripts/task-pipeline/src/cli.ts" validate tasks.json --summary
 ```
 
 This checks: valid JSON, missing dependencies, circular dependencies, phase
