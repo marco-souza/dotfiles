@@ -81,9 +81,8 @@ fi
 
 # Text Editors
 ################
-    alias vim=nvim
-    alias ev="nvim"
-    alias ec="code-insiders"
+    alias vim="nvim"
+    alias v="nvim"
 
 
 # Git Editors
@@ -113,5 +112,5 @@ fi
 ################
     alias notes="tnw -c ~/w/marco-souza/notes/ nvim"
     alias dotfiles="tnw -c ~/w/marco-souza/dotfiles/ nvim"
-    alias evim="tnw -c ~/.config/nvim/ nvim"
+    alias ev="tnw -c ~/.config/nvim/ nvim"
     alias wo="workon"
