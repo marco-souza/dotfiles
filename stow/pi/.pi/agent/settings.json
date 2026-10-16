@@ -1,16 +1,27 @@
 {
   "defaultProvider": "opencode-go",
-  "defaultModel": "glm-5.2",
+  "defaultModel": "cloudflare-ai-gateway/workers-ai/@cf/qwen/qwen3-30b-a3b-fp8",
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "enabledModels": [
-    "opencode/mimo-v2.5-free",
-    "opencode/deepseek-v4-flash-free",
     "opencode-go/minimax-m3",
-    "ollama_homelab/qwen3.5:9b",
-    "opencode/big-pickle",
     "opencode-go/kimi-k3",
-    "opencode-go/glm-5.2"
+    "opencode-go/glm-5.2",
+    "opencode-go/deepseek-v4-flash",
+    "opencode-go/deepseek-v4-pro",
+    "opencode-go/gpt-5.6-luna",
+    "opencode-go/mimo-v2.5-pro",
+    "opencode-go/mimo-v2.5",
+    "cloudflare-ai-gateway/workers-ai/@cf/zai-org/glm-4.7-flash",
+    "cloudflare-ai-gateway/workers-ai/@cf/qwen/qwen3-30b-a3b-fp8",
+    "cloudflare-ai-gateway/workers-ai/@cf/nvidia/nemotron-3-120b-a12b",
+    "cloudflare-ai-gateway/workers-ai/@cf/qwen/qwen3.8-27b",
+    "cloudflare-ai-gateway/workers-ai/@cf/zai-org/glm-5.3-flash",
+    "cloudflare-ai-gateway/workers-ai/@cf/zai-org/glm-5.2",
+    "cloudflare-ai-gateway/workers-ai/@cf/zai-org/glm-5.3",
+    "cloudflare-ai-gateway/workers-ai/@cf/moonshotai/kimi-k2.6",
+    "cloudflare-ai-gateway/workers-ai/@cf/moonshotai/kimi-k2.7-code",
+    "cloudflare-ai-gateway/workers-ai/@cf/ibm-granite/granite-4.0-h-micro"
   ],
   "theme": "dark",
   "externalEditor": "nvim",
@@ -36,7 +47,10 @@
     "anthropicExtraUsage": false
   },
   "extensions": [
-    "/Users/marco/w/marco-souza/pi-browser-bridge/pi-extension/src/index.ts"
+    "/Users/marco/w/marco-souza/pi-browser-bridge/pi-extension/src/index.ts",
+    "/Users/marco/.pi/agent/extensions/src/",
+    "/home/marco/w/marco-souza/pi-browser-bridge/pi-extension/src/index.ts",
+    "/home/marco/.pi/agent/extensions/src/"
   ],
-  "lastChangelogVersion": "0.80.6"
+  "lastChangelogVersion": "1.2.0"
 }

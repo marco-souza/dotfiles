@@ -501,11 +501,18 @@ export function generateRunnerScript(
 ): string {
   const b64 = Buffer.from(promptContent, "utf-8").toString("base64");
   const scriptPath = `/tmp/task-${tid}.sh`;
+  // MODEL / THINKING: override the subagent model and thinking level via env.
+  //   TASK_PIPELINE_MODEL     e.g. opencode/deepseek-v4-flash (default: pi default)
+  //   TASK_PIPELINE_THINKING  off|minimal|low|medium|high|xhigh|max (default: medium)
+  const modelFlag = process.env.TASK_PIPELINE_MODEL
+    ? `--model ${process.env.TASK_PIPELINE_MODEL} `
+    : "";
+  const thinkingLevel = process.env.TASK_PIPELINE_THINKING ?? "medium";
   const script = `#!/bin/bash
 set -e
 cd "${projectDir}"
 PROMPT_B64="${b64}"
-pi --thinking low -p "$(echo "$PROMPT_B64" | base64 -d)" 2>&1 | tee "${tasksDir}/${tid}.out"
+pi ${modelFlag}--thinking ${thinkingLevel} -p "$(echo "$PROMPT_B64" | base64 -d)" 2>&1 | tee "${tasksDir}/${tid}.out"
 echo "${tid}_DONE" > "${tasksDir}/${tid}.done"
 echo "✓ ${tid} completed at $(date)"
 `;
